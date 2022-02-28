@@ -1,0 +1,17 @@
+https://usevision.org/data/mm10/IDEASmouseHem2019/S3norm/ideasVisionV20p8NormBAtac.bw
+https://usevision.org/data/mm10/IDEASmouseHem2019/S3norm/ideasVisionV20p8NormCd4Atac.bw
+https://usevision.org/data/mm10/IDEASmouseHem2019/S3norm/ideasVisionV20p8NormCd8Atac.bw
+https://usevision.org/data/mm10/IDEASmouseHem2019/S3norm/ideasVisionV20p8NormCfueAtac.bw
+https://usevision.org/data/mm10/IDEASmouseHem2019/S3norm/ideasVisionV20p8NormCfumAtac.bw
+https://usevision.org/data/mm10/IDEASmouseHem2019/S3norm/ideasVisionV20p8NormCmpAtac.bw
+https://usevision.org/data/mm10/IDEASmouseHem2019/S3norm/ideasVisionV20p8NormEr4Atac.bw
+https://usevision.org/data/mm10/IDEASmouseHem2019/S3norm/ideasVisionV20p8NormEryadAtac.bw
+https://usevision.org/data/mm10/IDEASmouseHem2019/S3norm/ideasVisionV20p8NormEryflAtac.bw
+https://usevision.org/data/mm10/IDEASmouseHem2019/S3norm/ideasVisionV20p8NormG1eAtac.bw
+https://usevision.org/data/mm10/IDEASmouseHem2019/S3norm/ideasVisionV20p8NormGmpAtac.bw
+https://usevision.org/data/mm10/IDEASmouseHem2019/S3norm/ideasVisionV20p8NormImkAtac.bw
+https://usevision.org/data/mm10/IDEASmouseHem2019/S3norm/ideasVisionV20p8NormLskAtac.bw
+https://usevision.org/data/mm10/IDEASmouseHem2019/S3norm/ideasVisionV20p8NormMepAtac.bw
+https://usevision.org/data/mm10/IDEASmouseHem2019/S3norm/ideasVisionV20p8NormMonAtac.bw
+https://usevision.org/data/mm10/IDEASmouseHem2019/S3norm/ideasVisionV20p8NormNeuAtac.bw
+https://usevision.org/data/mm10/IDEASmouseHem2019/S3norm/ideasVisionV20p8NormNkAtac.bw

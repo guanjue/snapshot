@@ -1,0 +1,17 @@
+CMP	https://usevision.org/data/mm10/atac/842.homerPeaks.noBlack.noChrM.bed	842.homerPeaks.noBlack.noChrM.bed
+GMP	https://usevision.org/data/mm10/atac/843.homerPeaks.noBlack.noChrM.bed	843.homerPeaks.noBlack.noChrM.bed
+MEP	https://usevision.org/data/mm10/atac/844.homerPeaks.noBlack.noChrM.bed	844.homerPeaks.noBlack.noChrM.bed
+CFUE	https://usevision.org/data/mm10/atac/845.homerPeaks.noBlack.noChrM.bed	845.homerPeaks.noBlack.noChrM.bed
+ERYad	https://usevision.org/data/mm10/atac/846.homerPeaks.noBlack.noChrM.bed	846.homerPeaks.noBlack.noChrM.bed
+ERYfl	https://usevision.org/data/mm10/atac/854.homerPeaks.noBlack.noChrM.bed	854.homerPeaks.noBlack.noChrM.bed
+CFUMK	https://usevision.org/data/mm10/atac/847.homerPeaks.noBlack.noChrM.bed	847.homerPeaks.noBlack.noChrM.bed
+iMK	https://usevision.org/data/mm10/atac/848.homerPeaks.noBlack.noChrM.bed	848.homerPeaks.noBlack.noChrM.bed
+G1E	https://usevision.org/data/mm10/atac/870.homerPeaks.noBlack.noChrM.bed	870.homerPeaks.noBlack.noChrM.bed
+ER4	https://usevision.org/data/mm10/atac/872.homerPeaks.noBlack.noChrM.bed	872.homerPeaks.noBlack.noChrM.bed
+LSK	https://usevision.org/data/mm10/atac/987.homerPeaks.noBlack.noChrM.bed	987.homerPeaks.noBlack.noChrM.bed
+MON	https://usevision.org/data/mm10/atac/1198.homerPeaks.noBlack.noChrM.bed	1198.homerPeaks.noBlack.noChrM.bed
+NEU	https://usevision.org/data/mm10/atac/1199.homerPeaks.noBlack.noChrM.bed	1199.homerPeaks.noBlack.noChrM.bed
+B	https://usevision.org/data/mm10/atac/10072.homerPeaks.noBlack.noChrM.bed	10072.homerPeaks.noBlack.noChrM.bed
+NK	https://usevision.org/data/mm10/atac/100077.homerPeaks.noBlack.noChrM.bed	100077.homerPeaks.noBlack.noChrM.bed
+CD4	https://usevision.org/data/mm10/atac/100075.homerPeaks.noBlack.noChrM.bed	100075.homerPeaks.noBlack.noChrM.bed
+CD8	https://usevision.org/data/mm10/atac/100078.homerPeaks.noBlack.noChrM.bed	100078.homerPeaks.noBlack.noChrM.bed
