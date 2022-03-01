@@ -145,10 +145,10 @@ time bash run_Snapshot.sh
 
 ## The cell differentiation tree for index set 31
 ##### Average signal tree (left). Most abundant functional state tree (right).
-<img src="https://github.com/guanjue/snapshot/blob/master/test_data/example/31.peak_signal_state_list.txt0_0_1_1_1_1_0_0_1_0_0_0_0_0_0_0_0.tree.signal.png" width="800"/> <img src="https://github.com/guanjue/snapshot/blob/master/test_data/example/31.peak_signal_state_list.txt0_0_1_1_1_1_0_0_1_0_0_0_0_0_0_0_0.tree.state.png" width="800"/> 
+<img src="https://github.com/guanjue/snapshot/blob/master/test_data/example/31.peak_signal_state_list.tree.signal.png" width="800"/> <img src="https://github.com/guanjue/snapshot/blob/master/test_data/example/31.peak_signal_state_list.tree.state.png" width="800"/> 
 
 ##### Cell type differentiation mean signal violin plot & functional state bar plot
-<img src="https://github.com/guanjue/snapshot/blob/master/test_data/example/31.0_0_1_1_1_1_0_0_1_0_0_0_0_0_0_0_0.violin.png" width="800"/> <img src="https://github.com/guanjue/snapshot/blob/master/test_data/example/31.0_0_1_1_1_1_0_0_1_0_0_0_0_0_0_0_0.bar.png" width="800"/> 
+<img src="https://github.com/guanjue/snapshot/blob/master/test_data/example/31.violin.png" width="800"/> <img src="https://github.com/guanjue/snapshot/blob/master/test_data/example/31.bar.png" width="800"/> 
 
 
 ##### Merged peak file (bed format)
