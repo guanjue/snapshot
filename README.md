@@ -54,11 +54,11 @@ conda activate snapshot
 ```
 
 ## Input data
-##### The cell type peak & signal file list: 
-##### The 1st column is the cell type label; 
-##### The 2nd column is the cell-type specific peak bed absolute-file-path; 
-##### The 3rd column is the cell-type specific signal bigWig absolute-file-path; 
-##### The 4th column is the cell-type specific functional epigenetic state bigBed absolute-file-path.
+###### The cell type peak & signal & epigenetic-state file list: 
+###### The 1st column is the cell type label; 
+###### The 2nd column is the cell-type specific peak bed absolute-file-path; 
+###### The 3rd column is the cell-type specific signal bigWig absolute-file-path; 
+###### The 4th column is the cell-type specific functional epigenetic state bigBed absolute-file-path.
 ```
 >>> head input_data/peak_signal_state_list.txt 
 LSK	atac_pk/LSK.pk.bed	atac_sig/ideasVisionV20p8NormLskAtac.bw	function_label/ideasVisionV20p8SegLsk.bb
