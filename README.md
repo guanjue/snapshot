@@ -9,19 +9,19 @@
 ## The overall workflow of Snapshot
 
 #### Figure 1
-<img src="https://github.com/guanjue/snapshot/blob/master/test_data/example/f1.png" width="800"/>
+![logo](https://raw.githubusercontent.com/guanjue/snapshot/master/test_data/example/f1.png)
 
 ##### The overall workflow of snapshot. (a) In the 1st step, we use the binarized presence/absence status of ccREs at each location across all cell types to create a ccRE index to represent the unique combinatorial pattern of ccREs at the location. All ccREs with the same index are grouped into one cluster called an index-set (IS). (b) We select the threshold to filter the less prevalent ISs based on the distribution of the number of ccREs per IS (red dash line). (c) We visualize the ISs and their ccREs in a heatmap. The blue dash box represents one example of IS: 0_1_0_0_1. The filtered ISs and their ccREs are shown in the end of the heatmap (black dash box). (d) We apply the QDA model to correct ccRE’s index by borrowing information from the signals of the ccRE across all cell types. After the QDA step, some of the ccREs grouped in the rare ISs can be rescued. (e) Finally, we visualize the ccRE clusters in a heatmap. Each row in the heatmap is the ccRE pattern for each index-set, and each column is a cell type. The ccRE patterns are sorted by their indices in the heatmap. By our definition of the ccRE index, the ccRE patterns are separated if they have different ccRE status in a cell type; conversely they are clustered together if they have similar ccRE status in a cell type. These different plots will together highlight the epigenetic activity across cell types and the associated functional annotations and their enrichments for each index-set, which enhances the interpretation of the functional roles of each ccRE cluster during cell differentiation.
 
 ## Example of Snapshot output: 
 ### Hematopoietic cell differentiation in VISION (ValIdated Systematic IntegratiON of hematopoietic epigenomes) project
 #### Figure 2
-<img src="https://github.com/guanjue/snapshot/blob/master/test_data/example/f2.png" width="800"/>
+![logo](https://raw.githubusercontent.com/guanjue/snapshot/master/test_data/example/f2.png)
 
 ##### The heatmap of index-sets. (a) The heatmap of index-set colored by the average ATAC-seq signal in each cell type. (b) The heatmap of index-set colored by the most frequent functional annotation in each cell type. (c) The density plot of the number of genomic region covered by the index-set. (d) The color code and epigenetic composition of functional annotation used in (b).
 
 #### Figure 3
-<img src="https://github.com/guanjue/snapshot/blob/master/test_data/example/f3.png" width="800"/>
+![logo](https://raw.githubusercontent.com/guanjue/snapshot/master/test_data/example/f3.png)
 
 ##### The data visualization for index-set-149 and corresponding GO analysis and MEME-ChIP TF binding motif analysis. (a) The hematopoietic cell differentiation tree colored by the average ATAC-seq signal in each cell type of the index-set-149. The violin plot represents the distribution of ATAC-seq signal in each cell type of the index-set-149 is in below.  (b) The same cell differentiation tree colored by the most frequent functional annotation in each cell type of the index-set-149. The two most frequence functional annotation in erythroblasts lineage. The bar plot based on the proportion of each functional annotation in each cell type of the index-set-149 is below the cell differentiation tree. (c) The index-set-149 relevant GO term. (d) The index-set-149 significantly enriched TF binding motif from MEME-ChIP analysis.
 
