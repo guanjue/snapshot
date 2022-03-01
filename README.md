@@ -103,7 +103,7 @@ CMP,GMP
 
 ## RUN Snapshot
 ##### (1) User need to change the script_folder, input_folder, output_folder, in 'Step1_run_Snapshot.sh' file. 
-##### The "min_number_per_index_set" is the only parameter user need to decide for Snapshot. It is minimum number of peak per index-set. The index-set with lower number of peaks will be merged into the last X_X_X_... index-set 
+##### The file path or folder path should be replace by the real absolute-path to the target folder
 ```
 >>> cat Step1_run_Snapshot.sh
 ##################################
@@ -139,9 +139,16 @@ time python3 $script_folder'snapshot_v1.py' -p $peak_signal_list_file \
 echo 'complete :)'
 
 ```
-##### (2) use 'runall_commandline.sh' script to run Snapshot
+
+##### (2) use 'Step0_get_input_data_for_testing_run.sh' script to download input data for testing run
 ```
-time bash run_Snapshot.sh
+cd /snapshot/test_data/
+time bash Step0_get_input_data_for_testing_run.sh
+```
+
+##### (3) use 'runall_commandline.sh' script to run Snapshot. The testing run can be finish within 20min (Macbook pro, 2.4 GHz Quad-Core Intel Core i5; 8GB RAM)
+```
+time bash Step1_run_Snapshot.sh
 ```
 
 
