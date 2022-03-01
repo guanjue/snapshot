@@ -149,11 +149,19 @@ time bash run_Snapshot.sh
 
 ##### Cell type differentiation mean signal violin plot & functional state bar plot
 <img src="https://github.com/guanjue/snapshot/blob/master/test_data/example/31.violin.png" width="800"/> <img src="https://github.com/guanjue/snapshot/blob/master/test_data/example/31.bar.png" width="800"/> 
-![ezcv logo](https://raw.githubusercontent.com/guanjue/snapshot/master/test_data/example/31.bar.png)
 
-![ezcv logo](https://raw.githubusercontent.com/Descent098/ezcv/master/.github/logo.png)
+##### Cell type differentiation system: Cell differentiation Tree of Average signals
+![logo](https://raw.githubusercontent.com/guanjue/snapshot/master/test_data/example/31.peak_signal_state_list.tree.signal.png)
 
-https://github.com/Descent098/ezcv/raw/master/.github/logo.png
+##### Cell type differentiation system: Cell differentiation Tree of Functional Epigenetic States
+![logo](https://raw.githubusercontent.com/guanjue/snapshot/master/test_data/example/31.peak_signal_state_list.tree.state.png)
+
+##### Cell type differentiation system: Violin of peak signals
+![logo](https://raw.githubusercontent.com/guanjue/snapshot/master/test_data/example/31.violin.png)
+
+##### Cell type differentiation system: Barplot of Functional Epigenetic States
+![logo](https://raw.githubusercontent.com/guanjue/snapshot/master/test_data/example/31.bar.png)
+
 
 ##### Merged peak file (bed format)
 ```
