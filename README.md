@@ -65,6 +65,12 @@ LSK	atac_pk/LSK.pk.bed	atac_sig/ideasVisionV20p8NormLskAtac.bw	function_label/id
 CMP	atac_pk/CMP.pk.bed	atac_sig/ideasVisionV20p8NormCmpAtac.bw	function_label/ideasVisionV20p8SegCmp.bb
 MEP	atac_pk/MEP.pk.bed	atac_sig/ideasVisionV20p8NormMepAtac.bw	function_label/ideasVisionV20p8SegMep.bb
 CFUE	atac_pk/CFUE.pk.bed	atac_sig/ideasVisionV20p8NormCfueAtac.bw	function_label/ideasVisionV20p8SegCfue.bb
+ERYad	atac_pk/ERYad.pk.bed	atac_sig/ideasVisionV20p8NormEryadAtac.bw	function_label/ideasVisionV20p8SegEryad.bb
+ERYfl	atac_pk/ERYfl.pk.bed	atac_sig/ideasVisionV20p8NormEryflAtac.bw	function_label/ideasVisionV20p8SegEryfl.bb
+G1E	atac_pk/G1E.pk.bed	atac_sig/ideasVisionV20p8NormG1eAtac.bw	function_label/ideasVisionV20p8SegG1e.bb
+ER4	atac_pk/ER4.pk.bed	atac_sig/ideasVisionV20p8NormEr4Atac.bw	function_label/ideasVisionV20p8SegEr4.bb
+CFUMK	atac_pk/CFUMK.pk.bed	atac_sig/ideasVisionV20p8NormCfumAtac.bw	function_label/ideasVisionV20p8SegCfum.bb
+iMK	atac_pk/iMK.pk.bed	atac_sig/ideasVisionV20p8NormImkAtac.bw	function_label/ideasVisionV20p8SegImk.bb
 .......
 ```
 
@@ -188,16 +194,6 @@ chr1	4424800	4425000	7
 chr1	4490600	4490800	8
 chr1	4496400	4496600	9
 chr1	4571800	4572000	10
-chr1	4623400	4623600	11
-chr1	4689200	4689400	12
-chr1	4706200	4706600	13
-chr1	4748200	4748400	14
-chr1	4756200	4756400	15
-chr1	4768400	4768600	16
-chr1	4771000	4771200	17
-chr1	4775000	4775800	18
-chr1	4780200	4780400	19
-chr1	4785600	4786200	20
 ......
 ```
 
