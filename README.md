@@ -143,12 +143,12 @@ time bash run_Snapshot.sh
 ##### Functional state epigenetic patterns.
 <img src="https://github.com/guanjue/snapshot/blob/master/test_data/example/functional_state_epigenetic_pattern.png" width="350"/>
 
-## The cell differentiation tree for index set 6
+## The cell differentiation tree for index set 31
 ##### Average signal tree (left). Most abundant functional state tree (right).
-<img src="https://github.com/guanjue/snapshot/blob/master/test_data/example/31.peak_signal_state_list.txt0_0_1_1_1_1_0_0_1_0_0_0_0_0_0_0_0.tree.signal.png" width="400"/> <img src="https://github.com/guanjue/snapshot/blob/master/test_data/example/31.peak_signal_state_list.txt0_0_1_1_1_1_0_0_1_0_0_0_0_0_0_0_0.tree.state.png" width="400"/> 
+<img src="https://github.com/guanjue/snapshot/blob/master/test_data/example/31.peak_signal_state_list.txt0_0_1_1_1_1_0_0_1_0_0_0_0_0_0_0_0.tree.signal.png" width="800"/> <img src="https://github.com/guanjue/snapshot/blob/master/test_data/example/31.peak_signal_state_list.txt0_0_1_1_1_1_0_0_1_0_0_0_0_0_0_0_0.tree.state.png" width="800"/> 
 
 ##### Cell type differentiation mean signal violin plot & functional state bar plot
-<img src="https://github.com/guanjue/snapshot/blob/master/test_data/example/31.0_0_1_1_1_1_0_0_1_0_0_0_0_0_0_0_0.violin.png" width="400"/> <img src="https://github.com/guanjue/snapshot/blob/master/test_data/example/31.0_0_1_1_1_1_0_0_1_0_0_0_0_0_0_0_0.bar.png" width="400"/> 
+<img src="https://github.com/guanjue/snapshot/blob/master/test_data/example/31.0_0_1_1_1_1_0_0_1_0_0_0_0_0_0_0_0.violin.png" width="800"/> <img src="https://github.com/guanjue/snapshot/blob/master/test_data/example/31.0_0_1_1_1_1_0_0_1_0_0_0_0_0_0_0_0.bar.png" width="800"/> 
 
 
 ##### Merged peak file (bed format)
