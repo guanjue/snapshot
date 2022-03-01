@@ -2,7 +2,7 @@
 ### Epigenetic modification of chromatin plays a pivotal role in regulating gene expression during cell differentiation. The scale and complexity of epigenetic data pose significant challenges for biologists to identify the regulatory events controlling cell differentiation. Here, we present a new method, called Snapshot, that uses epigenetic data to generate a hierarchical visualization for DNA regions with epigenetic features segregating along any given cell differentiation hierarchy of interest. Different hierarchies of cell types may be used to highlight the epigenetic history specific to any particular cell lineage. We demonstrate the utility of Snapshot using data from the VISION project, an international project for ValIdated Systematic IntegratiON of epigenomic data in mouse and human hematopoiesis.
 
 ## Reference
-#### Xiang, G., Giardine, B., An, L., Sun, C., Keller, C., Heuston, E., Bodine, D., Hardison, R. and Zhang, Y., 2018. Snapshot: clustering and visualizing epigenetic history during cell differentiation. bioRxiv, p.291880.
+#### Xiang, G., Giardine, B., An, L., Sun, C., Keller, C., Heuston, E., Bodine, D., Hardison, R. and Zhang, Y. Snapshot: clustering and visualizing epigenetic history during cell differentiation. bioRxiv, p.291880.
 ######(https://www.biorxiv.org/content/early/2018/04/09/291880)
 
 
@@ -56,20 +56,12 @@ conda activate snapshot
 ## Input data
 ##### The cell type peak & signal file list: 1st column is the cell type label; 2nd column is the cell-type specific peak bed file path; 3rd column is the cell-type specific signal bigWig file path
 ```
->>> head input_data/peak_signal_list.txt 
-LSK	atac_pk/LSK.pk.bed	atac_sig/LSK.atac.sig.bw
-CMP	atac_pk/CMP.pk.bed	atac_sig/CMP.atac.sig.bw
-MEP	atac_pk/MEP.pk.bed	atac_sig/MEP.atac.sig.bw
-GMP	atac_pk/GMP.pk.bed	atac_sig/GMP.atac.sig.bw
-```
-
-##### The cell type functional state file list: 1st column is the cell type label; 2nd column is the epigenetic state bedgraph file path
-```
->>> head input_data/function_list.txt 
-LSK	function_label/LSK.ideas.bedgraph
-CMP	function_label/CMP.ideas.bedgraph
-MEP	function_label/MEP.ideas.bedgraph
-GMP	function_label/GMP.ideas.bedgraph
+>>> head input_data/peak_signal_state_list.txt 
+LSK	atac_pk/LSK.pk.bed	atac_sig/ideasVisionV20p8NormLskAtac.bw	function_label/ideasVisionV20p8SegLsk.bb
+CMP	atac_pk/CMP.pk.bed	atac_sig/ideasVisionV20p8NormCmpAtac.bw	function_label/ideasVisionV20p8SegCmp.bb
+MEP	atac_pk/MEP.pk.bed	atac_sig/ideasVisionV20p8NormMepAtac.bw	function_label/ideasVisionV20p8SegMep.bb
+CFUE	atac_pk/CFUE.pk.bed	atac_sig/ideasVisionV20p8NormCfueAtac.bw	function_label/ideasVisionV20p8SegCfue.bb
+.......
 ```
 
 ##### The cell type differentiation tree: Each row represent one edge in the ell type differentiation tree. The 1st cell type is the progenitor cell type and the 2nd cell type is the differentiated cell type
@@ -96,36 +88,42 @@ CMP,GMP
 ```
 
 ## RUN Snapshot
-##### (1) User need to change the script_folder, input_folder, output_folder, in 'run_Snapshot.sh' file. 
+##### (1) User need to change the script_folder, input_folder, output_folder, in 'Step1_run_Snapshot.sh' file. 
 ##### The "min_number_per_index_set" is the only parameter user need to decide for Snapshot. It is minimum number of peak per index-set. The index-set with lower number of peaks will be merged into the last X_X_X_... index-set 
 ```
->>> cat run_Snapshot.sh
+>>> cat Step1_run_Snapshot.sh
 ##################################
-script_folder='/Users/universe/Documents/2022_Independent/snapshot/bin/'
-input_folder='/Users/universe/Documents/2022_Independent/00_Independent_analysis/snapshot_test_data/input_data/'
-output_folder='/Users/universe/Documents/2022_Independent/00_Independent_analysis/snapshot_test_data/output_result/'
-master_peak_bed='/Users/universe/Documents/2022_Independent/00_Independent_analysis/snapshot_test_data/input_data/atac_pk/cCRE.Pool.Merged.bed'
-
-peak_signal_list_file='peak_signal_list.txt'
-IDEAS_state_200bp_bed_files_list_file='function_list.txt'
+### required parameters or input files
+output_name='snapshot_test_run'
+peak_signal_list_file='peak_signal_state_list.txt'
 IDEAS_state_color_list_file='function_color_list.txt'
 cell_type_tree_file='cd_tree.txt'
+genome_size_file='mm10.chrom.1_19XY.sizes'
 
-output_name='snapshot_test_run'
-min_number_per_index_set=10
+### required folder path
+input_folder='/Users/universe/Documents/2022_Independent/00_Independent_analysis/snapshot_test_data/input_data/'
+output_folder='/Users/universe/Documents/2022_Independent/00_Independent_analysis/snapshot_test_data/output_result/'
+script_folder='/Users/universe/Documents/2022_Independent/snapshot/bin/'
 
+### optional parameters or input files
+master_peak_bed='/Users/universe/Documents/2022_Independent/snapshot/test_data/input_data/S3V2_IDEAS_mm10_ccre2.cCRE.M.notall0.bed'
+min_number_per_indexset=100
+QDA_round_num=1
 
 ### run snapshot (CORE!!!)
 echo 'run snapshot :o'
 cd $input_folder
-time python $script_folder'snapshot_v1.py' -p $peak_signal_list_file \
+
+time python3 $script_folder'snapshot_v1.py' -p $peak_signal_list_file \
 -n $output_name -t $min_number_per_indexset \
--f $IDEAS_state_200bp_bed_files_list_file \
+-f $genome_size_file \
 -c $IDEAS_state_color_list_file \
 -e $cell_type_tree_file \
 -i $input_folder -o $output_folder -s $script_folder \
--m $master_peak_bed
+-m $master_peak_bed -q $QDA_round_num
+
 echo 'complete :)'
+
 ```
 ##### (2) use 'runall_commandline.sh' script to run Snapshot
 ```
@@ -137,29 +135,22 @@ time bash run_Snapshot.sh
 ### All output files will be to the 'output_folder'
 
 ## The heatmap for index set
-##### Average atac-seq signal heatmap (left). Most abundant functional state heatmap (right).
-<img src="https://github.com/guanjue/snapshot/blob/master/test_data/example/snapshot_test_run.meansig.png" width="350"/> <img src="https://github.com/guanjue/snapshot/blob/master/test_data/example/snapshot_test_run.indexset_fun.png" width="350"/> 
+##### Average ATAC-seq signals patterns in all Index-Sets.
+![logo](https://raw.githubusercontent.com/guanjue/snapshot/master/test_data/example/snapshot_test_run.meansig.png)
 
-##### Functional state epigenetic patterns.
-<img src="https://github.com/guanjue/snapshot/blob/master/test_data/example/functional_state_epigenetic_pattern.png" width="350"/>
+##### Most Abundant Functional Epigenetic States patterns in all Index-Sets.
+![logo](https://raw.githubusercontent.com/guanjue/snapshot/master/test_data/example/snapshot_test_run.indexset_fun.png)
 
-## The cell differentiation tree for index set 31
-##### Average signal tree (left). Most abundant functional state tree (right).
-<img src="https://github.com/guanjue/snapshot/blob/master/test_data/example/31.peak_signal_state_list.tree.signal.png" width="800"/> <img src="https://github.com/guanjue/snapshot/blob/master/test_data/example/31.peak_signal_state_list.tree.state.png" width="800"/> 
-
-##### Cell type differentiation mean signal violin plot & functional state bar plot
-<img src="https://github.com/guanjue/snapshot/blob/master/test_data/example/31.violin.png" width="800"/> <img src="https://github.com/guanjue/snapshot/blob/master/test_data/example/31.bar.png" width="800"/> 
-
-##### Cell type differentiation system: Cell differentiation Tree of Average signals
+##### Cell type differentiation system (Index-Set 31): Cell differentiation Tree of Average signals
 ![logo](https://raw.githubusercontent.com/guanjue/snapshot/master/test_data/example/31.peak_signal_state_list.tree.signal.png)
 
-##### Cell type differentiation system: Cell differentiation Tree of Functional Epigenetic States
+##### Cell type differentiation system (Index-Set 31): Cell differentiation Tree of Functional Epigenetic States
 ![logo](https://raw.githubusercontent.com/guanjue/snapshot/master/test_data/example/31.peak_signal_state_list.tree.state.png)
 
-##### Cell type differentiation system: Violin of peak signals
+##### Cell type differentiation system (Index-Set 31): Violin of peak signals
 ![logo](https://raw.githubusercontent.com/guanjue/snapshot/master/test_data/example/31.violin.png)
 
-##### Cell type differentiation system: Barplot of Functional Epigenetic States
+##### Cell type differentiation system (Index-Set 31): Barplot of Functional Epigenetic States
 ![logo](https://raw.githubusercontent.com/guanjue/snapshot/master/test_data/example/31.bar.png)
 
 
