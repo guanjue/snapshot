@@ -149,7 +149,7 @@ time bash run_Snapshot.sh
 
 ##### Cell type differentiation mean signal violin plot & functional state bar plot
 <img src="https://github.com/guanjue/snapshot/blob/master/test_data/example/31.violin.png" width="800"/> <img src="https://github.com/guanjue/snapshot/blob/master/test_data/example/31.bar.png" width="800"/> 
-!['barplot'](https://github.com/guanjue/snapshot/blob/master/test_data/example/31.bar.png)
+!['barplot'](https://github.com/guanjue/snapshot/blob/master/test_data/example/31.bar.png?raw=true)
 
 ##### Merged peak file (bed format)
 ```
