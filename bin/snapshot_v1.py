@@ -88,7 +88,7 @@ def get_cRE_function_state(data_info_matrix, id_col, lb_col, cover_col, middist_
 			data_function1_middist[pk_id] = info[middist_col-1]
 			data_function1_statelen[pk_id] = info[functionlen-1]
 		elif info[cover_col-1] == data_function1_maxcover[pk_id]: ### if 2 states cover the same region with same length
-			if info[middist_col-1] < data_function1_middist[pk_id] and lb_tmp!='0': 
+			if np.absolute(info[middist_col-1]) < np.absolute(data_function1_middist[pk_id]) and lb_tmp!='0': 
 				### if cover the same; check mid point distance
 				data_function1[pk_id] = lb_tmp
 				data_function1_maxcover[pk_id] = info[cover_col-1]
