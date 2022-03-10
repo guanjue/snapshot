@@ -123,6 +123,21 @@ def get_cRE_function_state(data_info_matrix, id_col, lb_col, cover_col, middist_
 	result.close()
 
 ################################################################################################
+### merge state bed for each cell-type
+def merge_ct_state(input_bed):
+	#input_bed = 'MEP1.bbd.sort.OD.bed'
+	bedmat = read2d_array(input_bed, str)
+	unique_state = np.unique(bedmat[:,3])
+	call('rm -f ' + input_bed+'.MS.bed', shell=True)
+	###
+	for s in unique_state:
+		call('cat ' + input_bed + ' | awk -F \'\t\' -v OFS=\'\t\' -v state_i='+str(s)+' \'{if ($4==state_i) print $0}\' > ' + input_bed+'.'+str(s)+'.bed', shell=True)
+		call('bedtools merge -i ' + input_bed+'.'+str(s)+'.bed' + ' > ' + input_bed+'.'+str(s)+'.M.bed', shell=True)
+		call('cat ' + input_bed+'.'+str(s)+'.M.bed' + ' | awk -F \'\t\' -v OFS=\'\t\' -v state_i='+str(s)+' \'{print $0,state_i}\' >> ' + input_bed+'.MS.bed', shell=True)
+		call('rm ' + input_bed+'.'+str(s)+'.M.bed', shell=True)
+		call('rm ' + input_bed+'.'+str(s)+'.bed', shell=True)
+
+################################################################################################
 ### get index/signal matrix
 def get_mark_matrix(peak_bed, peak_info_column, mark_list, output_file, method, sort_sigbed, script_folder, signal_type='peak', genome_size_file=None):
 	#######
@@ -175,12 +190,14 @@ def get_mark_matrix(peak_bed, peak_info_column, mark_list, output_file, method, 
 			call('rm'+ ' ' +mark_bed_bw_file+'.tab'+ ' ' +mark_bed_bw_file+'.sort.tab', shell=True)
 		elif method == 'window':
 			### used bedtools map to get the average signal of each peak
-			call('bedtools window -a ' + sort_bed_file + ' -b ' + mark_bed_bw_file+'.sort.bed' + ' -w 0 > ' + mark_bed_bw_file+'.tmp01.txt', shell=True)
+			merge_ct_state(mark_bed_bw_file+'.sort.bed')
+			call('bedtools window -a ' + sort_bed_file + ' -b ' + mark_bed_bw_file+'.sort.bed.MS.bed' + ' -w 0 > ' + mark_bed_bw_file+'.tmp01.txt', shell=True)
 			### convert bedtools window output to matrix of pk and intersect function label info (intersect region; midpoint dist; TF peak length)
 			data_info_matrix = function_label_info(mark_bed_bw_file+'.tmp01.txt', 4, 8, 2, 6)
 			### get peak's function labels based on intersect region; midpoint dist; TF peak length
 			get_cRE_function_state(data_info_matrix, 1, 2, 3, 4, 5, sort_bed_file, 4, mark_bed_bw_file+'.tmp01.txt')
 			call('rm '+mark_bed_bw_file+'.sort.bed', shell=True)
+			call('rm '+mark_bed_bw_file+'.sort.bed.MS.bed', shell=True)
 		### cut the map number column
 		call('cut -f'+ str(peak_info_column) +" -d$'\t' " + mark_bed_bw_file+'.tmp01.txt' + ' | awk -F \'\t\' -v OFS=\'\t\' \'{if ($1=="NA") print 0; else print $1}\' > ' + mark_bed_bw_file+'.tmp02.txt', shell=True)
 		### cbind to matrix
