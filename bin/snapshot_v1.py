@@ -131,11 +131,14 @@ def merge_ct_state(input_bed):
 	call('rm -f ' + input_bed+'.MS.bed', shell=True)
 	###
 	for s in unique_state:
+		#print(s)
 		call('cat ' + input_bed + ' | awk -F \'\t\' -v OFS=\'\t\' -v state_i='+str(s)+' \'{if ($4==state_i) print $0}\' > ' + input_bed+'.'+str(s)+'.bed', shell=True)
 		call('bedtools merge -i ' + input_bed+'.'+str(s)+'.bed' + ' > ' + input_bed+'.'+str(s)+'.M.bed', shell=True)
 		call('cat ' + input_bed+'.'+str(s)+'.M.bed' + ' | awk -F \'\t\' -v OFS=\'\t\' -v state_i='+str(s)+' \'{print $0,state_i}\' >> ' + input_bed+'.MS.bed', shell=True)
 		call('rm ' + input_bed+'.'+str(s)+'.M.bed', shell=True)
 		call('rm ' + input_bed+'.'+str(s)+'.bed', shell=True)
+	call('sort -k1,1 -k2,2n ' + input_bed+'.MS.bed' + ' > ' + input_bed+'.MSS.bed', shell=True)
+	call('rm '+ input_bed+'.MS.bed', shell=True)
 
 ################################################################################################
 ### get index/signal matrix
@@ -171,7 +174,7 @@ def get_mark_matrix(peak_bed, peak_info_column, mark_list, output_file, method, 
 			mark_bed_bw_file = tmp[3]
 			### sort bianry label bed files
 			call('bigBedToBed ' + mark_bed_bw_file + ' ' + mark_bed_bw_file+'.sort.OD.bed', shell=True)
-			call('bedtools map -a genome.200bp.sort.bed -b '+ mark_bed_bw_file+'.sort.OD.bed' + ' -null 0 -c 4 -o collapse > ' + mark_bed_bw_file + '.sort.bed', shell=True)
+			call('bedtools map -a genome.200bp.sort.bed -b '+ mark_bed_bw_file+'.sort.OD.bed' + ' -null 0 -c 4 -o max > ' + mark_bed_bw_file + '.sort.bed', shell=True)
 			call('rm ' + mark_bed_bw_file+'.sort.OD.bed', shell=True)
 		#######
 		### use bedtools to generate the index/signal matrix
@@ -197,7 +200,7 @@ def get_mark_matrix(peak_bed, peak_info_column, mark_list, output_file, method, 
 			### get peak's function labels based on intersect region; midpoint dist; TF peak length
 			get_cRE_function_state(data_info_matrix, 1, 2, 3, 4, 5, sort_bed_file, 4, mark_bed_bw_file+'.tmp01.txt')
 			call('rm '+mark_bed_bw_file+'.sort.bed', shell=True)
-			call('rm '+mark_bed_bw_file+'.sort.bed.MS.bed', shell=True)
+			call('rm '+mark_bed_bw_file+'.sort.bed.MSS.bed', shell=True)
 		### cut the map number column
 		call('cut -f'+ str(peak_info_column) +" -d$'\t' " + mark_bed_bw_file+'.tmp01.txt' + ' | awk -F \'\t\' -v OFS=\'\t\' \'{if ($1=="NA") print 0; else print $1}\' > ' + mark_bed_bw_file+'.tmp02.txt', shell=True)
 		### cbind to matrix
