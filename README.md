@@ -172,7 +172,7 @@ time bash Step1_run_Snapshot.sh
 ![logo](https://raw.githubusercontent.com/guanjue/snapshot/master/test_data/example/31.peak_signal_state_list.tree.signal.png)
 
 ##### Cell type differentiation system (Index-Set 31): Cell differentiation Tree of Functional Epigenetic States
-![logo](https://raw.githubusercontent.com/guanjue/snapshot/master/test_data/example/31.peak_signal_state_list.tree.state.png)
+![logo](https://raw.githubusercontent.com/guanjue/snapshot/main/test_data/example/31.peak_signal_state_list.tree.state.png)
 
 ##### Cell type differentiation system (Index-Set 31): Violin of peak signals
 ![logo](https://raw.githubusercontent.com/guanjue/snapshot/master/test_data/example/31.violin.png)
