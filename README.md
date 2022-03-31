@@ -3,7 +3,6 @@
 
 ## Reference
 #### Xiang, G., Giardine, B., An, L., Sun, C., Keller, C., Heuston, E., Bodine, D., Hardison, R. and Zhang, Y. Snapshot: clustering and visualizing epigenetic history during cell differentiation. bioRxiv, p.291880.
-######(https://www.biorxiv.org/content/early/2018/04/09/291880)
 
 
 ## The overall workflow of Snapshot
