@@ -279,13 +279,15 @@ def QDA_rescue(index_label_vector, signal_matrix, index_X, count_threshold, qda_
 		for i in range(0,qda_num):
 			print('QDA iteration: ' + str(i))
 			clf = QuadraticDiscriminantAnalysis()
-			signal_matrix_train = signal_matrix[index_label_vector!=index_X,:]
-			index_label_vector_train = index_label_vector[index_label_vector!=index_X]
+			filter_rows = index_label_vector!=index_X
+			signal_matrix_train = signal_matrix[filter_rows,:]
+			index_label_vector_train = index_label_vector[filter_rows]
 			clf.fit(signal_matrix_train, index_label_vector_train)
 
 			### rescued index_vector
 			index_label_vector_pre = index_label_vector
 			index_label_vector = clf.predict(signal_matrix)
+			index_label_vector[filter_rows] = index_label_vector_pre[filter_rows]
 
 			### print the number of peak label changes
 			print('QDA changed label number: ')
