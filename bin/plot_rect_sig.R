@@ -17,7 +17,8 @@ smallnum = as.numeric(args[9])
 ####################################################
 ### use rect to plot heatmaps
 color_heatmap = function(color_matrix, outputname, format, border_color){
-	format(outputname, width = 1000, height = 1000) ### output name
+	format(outputname, width = 1000, height = 1000/50*dim(color_matrix)[1]) ### output name
+	#pdf(outputname, width = 4, height = 7)
 	par(mar=c(5,0.5,0.5,0.5)) ### set heatmap margins
 	colbin_len = 10 ### column bin size
 	rowbin_len = 10 ### row bin size
@@ -26,7 +27,7 @@ color_heatmap = function(color_matrix, outputname, format, border_color){
 	### plot areas
 	plot(c(0, dim(color_matrix)[2]*colbin_len), c(0, dim(color_matrix)[1]*rowbin_len), xaxt = "n", yaxt = "n", xaxs="i", yaxs="i", type = "n", xlab = "", ylab = "",main = "")
 	### add color matrix colname as heatmap colname
-	axis(1, c(1 : dim(color_matrix)[2])*colbin_len-0.5*colbin_len, colnames(color_matrix), las = 2, col.axis = "black", tick=FALSE)
+	axis(1, c(1 : dim(color_matrix)[2])*colbin_len-0.5*colbin_len, colnames(color_matrix), las = 2, cex.axis=1.5, col.axis = "black", tick=FALSE)
 	### use for loop to add rectangle with different color
 	for (coln in c(1 : dim(color_matrix)[2])){ ### loop columns
 		for (rown in c(1 : dim(color_matrix)[1])){ ### loop rows
@@ -59,6 +60,7 @@ colname_file = read.table(signal_input_list, header=F)
 ### add colnames
 colnames(signal_matrix) = colname_file[,1]
 
+#signal_matrix[signal_matrix>quantile(signal_matrix, 0.95)] = quantile(signal_matrix, 0.95)
 ### log2 transform
 if (log2=='T'){
 	signal_matrix = log2(signal_matrix+smallnum)
