@@ -15,7 +15,7 @@ print(length(index_count))
 if (length(index_count)>top_lim){
 	### select data without top X quantile
 	top = 0.95
-	top = 0.90
+	#top = 0.9
 	mean_95 = mean(index_count[index_count<=quantile(index_count, top)])
 	var_95 = var(index_count[index_count<=quantile(index_count, top)])
 	sd_95 = sd(index_count[index_count<=quantile(index_count, top)])
@@ -37,7 +37,7 @@ if (length(index_count)>top_lim){
 	print(summary(as.matrix(pvec)))
 	### FDR pval
 	FDR_thresh = 1e-2
-	#FDR_thresh = 1e-2
+	#FDR_thresh = 1e-3
 	padjvec = p.adjust(pvec, method='fdr')
 	print(summary(as.matrix(padjvec)))
 	### get NB count thresh
@@ -89,19 +89,19 @@ for (fdri in FDR_thresh_vec){
 	print(c(fdri, sum(as.numeric(padjvec)<fdri)) )
 }
 
-pdf('IS_num_vs_FDRthresh.pdf', width=4, height=4)
+pdf(paste0(index_matrix, '.IS_num_vs_FDRthresh.pdf'), width=4, height=4)
 plot(FDR_thresh_vec, IS_n, log='x', xlab='FDR adjusted p-value threshold', ylab='Index-Sets Number', cex.axis=1, ylim=c(0, max(IS_n)))
 lines(FDR_thresh_vec, IS_n)
 abline(v=0.01, lty=2)
 dev.off()
 
 
-MetaIS_num_vs_FDR = read.table('MetaIS_num_vs_FDR.txt', header=F)
-pdf('MetaIS_num_vs_FDRthresh.pdf', width=4, height=4)
-plot(MetaIS_num_vs_FDR[,2], MetaIS_num_vs_FDR[,1], log='x', xlab='FDR adjusted p-value threshold', ylab='Meta-Index-Sets Number', cex.axis=1, ylim=c(0, max(MetaIS_num_vs_FDR[,1])))
-lines(MetaIS_num_vs_FDR[,2], MetaIS_num_vs_FDR[,1])
-abline(v=0.01, lty=2)
-dev.off()
+#MetaIS_num_vs_FDR = read.table('MetaIS_num_vs_FDR.txt', header=F)
+#pdf('MetaIS_num_vs_FDRthresh.pdf', width=4, height=4)
+#plot(MetaIS_num_vs_FDR[,2], MetaIS_num_vs_FDR[,1], log='x', xlab='FDR adjusted p-value threshold', ylab='Meta-Index-Sets Number', cex.axis=1, ylim=c(0, max(MetaIS_num_vs_FDR[,1])) )
+#lines(MetaIS_num_vs_FDR[,2], MetaIS_num_vs_FDR[,1])
+#abline(v=0.01, lty=2)
+#dev.off()
 
 
 

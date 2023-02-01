@@ -1,6 +1,7 @@
 library(data.table)
 library(mclust)
 library(pheatmap)
+library(cba)
 
 ### snapshot
 d1_sp0 = as.data.frame(fread('snapshot_test_run_rep1.metaISid.mat.txt'))
@@ -61,10 +62,43 @@ proc.time() - ptm
 0.425
 
 ptm <- proc.time()
+set.seed(2019)
 used_rows = sample(dim(d1_sp0)[1], 30000)
-hclust1 = cutree(hclust(dist(d1_Signal_scale[used_rows,])), k=Knum1)
+dist_d1_sp0 = dist(d1_Signal_scale[used_rows,])
+hclust_result = hclust(dist_d1_sp0)
+hclust1 = cutree(hclust_result, k=Knum1)
 proc.time() - ptm
 26.284
+
+
+
+
+set.seed(2019)
+used_rows = sample(dim(d1_sp0)[1], 5000)
+dist_d1_sp0 = dist(d1_Signal_scale[used_rows,])
+hclust_result = hclust(dist_d1_sp0)
+hc <- hclust_result
+co <- order.optimal(dist_d1_sp0, hclust_result$merge)
+ho <- hc
+ho$merge <- co$merge
+ho$order <- co$order
+
+
+library(pheatmap)
+
+my_colorbar=colorRampPalette(c('white', 'red'))(n = length(breaksList))
+
+png('hc.20k.cCRE.hclust.heatmap.png')
+pheatmap(hc, main="hclust")
+dev.off()
+
+png('hc.20k.cCRE.optimal.heatmap.png')
+pheatmap(d1_Signal_scale[used_rows,][ho$order,], cluster_cols=F, cluster_rows=F)
+dev.off()
+
+
+
+
 
 ptm <- proc.time()
 used_rows = sample(dim(d1_sp0)[1], 30000)
@@ -77,13 +111,69 @@ running_time_vec = rbind(c(9.591, 0.425, 26.284, 1398.387))
 colnames(running_time_vec) = c('Snapshot', 'K-means', 'Hclust', 'Mclust')
 pdf('runtime.barplot.pdf', width=4, height=3)
 par(mar = c(5, 4, 1, 1))
-barplot(running_time_vec, xlab='', ylab='Running time', cex.axis=1, width=0.1, las=2, log='')
+barplot(running_time_vec, xlab='', ylab='Running time (second)', cex.axis=1, width=0.1, las=2, log='')
 box()
 dev.off()
 
 
+
+### test optimal leaf
+d1_Index = as.data.frame(fread('hg38_outputs/hg38_chrAll_analysis_merge/snapshot_test_run_merge.index.matrix.txt'))[,-c(1:4)]
+d1_Index = d1_Index[rowSums(d1_Index)>0,]
+
+ct_list = read.table('/Users/guanjuexiang/Downloads/Snapshot_test/input_data_hg38/peak_signal_state_list.merge.txt', header=F)[,1]
+ct_list = apply(cbind(as.data.frame(ct_list)), 1, toString)
+colnames(d1_Index) = ct_list
+
+set.seed(2019)
+used_rows = sample(dim(d1_Index)[1], 5000)
+dist_d1_sp0 = dist(d1_Index[used_rows,])
+hclust_result = hclust(dist_d1_sp0)
+hc <- hclust_result
+co <- order.optimal(dist_d1_sp0, hclust_result$merge)
+ho <- hc
+ho$merge <- co$merge
+ho$order <- co$order
+
+
+library(pheatmap)
+
+png('hc.20k.cCRE.optimal.heatmap.png')
+pheatmap(d1_Index[used_rows,][ho$order,], cluster_cols=F, cluster_rows=F, show_rownames=F)
+dev.off()
+
+png('Snapshot.20k.cCRE.optimal.heatmap.png')
+labels_s = apply(d1_Index[used_rows,],1, function(x) paste(x, collapse='_'))
+pheatmap(d1_Index[used_rows,][order(labels_s),], cluster_cols=F, cluster_rows=F, show_rownames=F)
+dev.off()
+
+
+
 ### DPGP
-conda create --name dpgp python GPy pandas numpy scipy matplotlib
+#conda create --name dpgp python GPy pandas numpy scipy matplotlib
+
+
+
+d1 = read.table('snapshot_test_run_merge.index.matrix.allpk.txt', header=F)
+
+non0row = apply(d1, 1, function(x) sum(as.numeric(x[-c(1:4)]))>0 )
+
+d1a = d1[non0row,]
+d1a[,4] = 1:dim(d1a)[1]
+write.table(d1a, 'snapshot_test_run_merge.index.matrix.txt', quote=F, sep='\t', col.names=F, row.names=F)
+
+d1 = read.table('snapshot_test_run_merge.signal.matrix.allpk.txt', header=F)
+d1a = d1[non0row,]
+d1a[,4] = 1:dim(d1a)[1]
+write.table(d1a, 'snapshot_test_run_merge.signal.matrix.txt', quote=F, sep='\t', col.names=F, row.names=F)
+
+d1 = read.table('snapshot_test_run_merge.function.matrix.allpk.txt', header=F)
+d1a = d1[non0row,]
+d1a[,4] = 1:dim(d1a)[1]
+write.table(d1a, 'snapshot_test_run_merge.function.matrix.txt', quote=F, sep='\t', col.names=F, row.names=F)
+
+
+
 
 
 

@@ -3,7 +3,8 @@
 args = commandArgs(trailingOnly=TRUE)
 signal_matrix_file = args[1]
 output_filename = args[2]
-heatmap_boarder_col = args[3]
+peak_signal_state_list = args[3]
+heatmap_boarder_col = args[4]
 
 ####################################################
 ### use rect to plot heatmaps
@@ -39,8 +40,14 @@ heatmap_save_type = png
 ### read signal matrix file
 signal_matrix_od = (read.table(signal_matrix_file, header=FALSE, sep='\t', comment.char='~'))
 
+### colnames 
+colname_file = read.table(peak_signal_state_list, header=F, sep='\t')
+ct_list = apply(colname_file, 1, function(x) as.character(x[1]) )
+
+###
 signal_matrix_color = signal_matrix_od[,-1]
-print(head(signal_matrix_color))
+colnames(signal_matrix_color) = ct_list
+#print(head(signal_matrix_color))
 ####################################################
 ###### plot heatmap
 color_heatmap(signal_matrix_color, output_filename, heatmap_save_type, heatmap_boarder_col)

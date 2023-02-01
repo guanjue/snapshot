@@ -45,7 +45,7 @@ for (i in seq(1,dim(signal_matrix_color)[1])){
 	match_id = match(tree_names, colname)
 	V(tree.igraph)$color = value_col[match_id]
 	V(tree.igraph)$size = 25
-	pdf(paste(toString(i), '.', signal_input_list, index_set_name[i], '.tree.pdf', sep = ''), width = 12, height = 12)
+	pdf(paste(index_set_name[i], '.', signal_input_list, '.tree.pdf', sep = ''), width = 12, height = 12)
 	plot(tree.igraph, layout = layout_as_tree(tree.igraph, root=c(1)))
 	dev.off()
 }

@@ -5,12 +5,14 @@ library(dplyr)
 
 
 ### input files
-bed_file = 'hg38_outputs/hg38_chrAll_analysis_merge/snapshot_test_run_merge.sort.bed'
+#cut -f1,2,3,4 snapshot_test_run_merge.index.matrix.txt > snapshot_test_run_merge.bedinfo.bed
+bed_file = 'snapshot_test_run_merge.bedinfo.bed'
 input_metaIS_mat_file = 'snapshot_test_run_merge.metaISid.mat.txt'
 peak_list_file = 'peak_signal_state_list.merge.txt'
 
 ### read data
-bed_info = as.data.frame(fread(bed_file, header=F))
+bed_info = as.data.frame(fread(bed_file, header=F))[1:83701,]
+#bed_info = as.data.frame(fread(bed_file, header=F))
 dmerge_sp0 = as.data.frame(fread(input_metaIS_mat_file, header=F))
 ct_info = as.data.frame(fread(peak_list_file, header=F))[,1]
 
@@ -86,6 +88,11 @@ pheatmap(KM_coluster_mean_mat0, cluster_col=F, cluster_row=T,cex=1.5, color=my_c
 dev.off()
 }
 
+
+
+
+
+
 pdf(paste0(output_dir, input_metaIS_mat_file, '.', 'all', '.pheatmap.KM_and_MetaIS.pdf'), height=15)
 #breaksList = seq(-max(abs(KM_coluster_mean_mat0)), max(abs(KM_coluster_mean_mat0)), by = 0.01)
 breaksList = seq(0, max(abs((max((KM_coluster_mean_mat0_all))))), by = 0.01)
@@ -93,12 +100,14 @@ my_colorbar=colorRampPalette(c('white', 'red'))(n = length(breaksList))
 pheatmap((KM_coluster_mean_mat0_all), cluster_col=F, cluster_row=T,cex=1.5, color=my_colorbar, breaks = breaksList, show_rownames=F)
 dev.off()
 
+library(lsa)
 
 KM_dist_to_sp = matrix(0, nrow=dim(KM_coluster_mean_mat0_all)[1], ncol=dim(meta_IS_coluster_mean_mat0)[1])
 
 for (i in 1:dim(KM_coluster_mean_mat0_all)[1]){
 	for (j in 1:dim(meta_IS_coluster_mean_mat0)[1]){
-		KM_dist_to_sp[i,j] = dist(rbind(KM_coluster_mean_mat0_all[i,], meta_IS_coluster_mean_mat0[j,]))
+		#KM_dist_to_sp[i,j] = dist(rbind(KM_coluster_mean_mat0_all[i,], meta_IS_coluster_mean_mat0[j,]))
+		KM_dist_to_sp[i,j] = 1 - cosine(as.numeric(KM_coluster_mean_mat0_all[i,]), as.numeric(meta_IS_coluster_mean_mat0[j,]))
 	}
 }
 
@@ -111,6 +120,7 @@ for (j in 1:km_num){
 	which_min_mat_KM_j = c()
 	for (i in 1:1:max(meta_IS_vec)){
 		which_min_mat_KM_j = c(which_min_mat_KM_j, sum(KM_dist_to_sp_which_min_j==i)!=0)*1
+		#which_min_mat_KM_j = c(which_min_mat_KM_j, sum(KM_dist_to_sp_which_min_j==i))*1
 	}
 	which_min_mat_KM = rbind(which_min_mat_KM, which_min_mat_KM_j)
 }
@@ -181,7 +191,7 @@ which_min_mat_Hclust_sum = apply(which_min_mat_Hclust,2,sum)
 ### get which.min mat
 which_min_mat = c()
 for (i in 1:max(meta_IS_vec)){
-which_min_mat = rbind(which_min_mat, c(sum(KM_dist_to_sp_which_min==i), sum(Hclust_dist_to_sp_which_min==i)))
+which_min_mat = rbind(which_min_mat, c(sum(KM_dist_to_sp_which_min==i), sum(Hclust_dist_to_sp_which_min ==i)))
 }
 
 rownames(which_min_mat) = 1:max(meta_IS_vec)
@@ -200,6 +210,8 @@ pdf('KM_which_min_dist.barplot.100.pdf', height=3)
 barplot(which_min_mat_KM_sum, log='')
 box()
 dev.off()
+
+
 pdf('Hclust_which_min_dist.barplot.pdf', height=3)
 barplot(which_min_mat_Hclust_sum, log='')
 box()
