@@ -10,6 +10,7 @@ sig_cCRE = args[3]
 outputname = args[4]
 cCRE_list = args[5]
 function_matrix = args[6]
+have_function_state_files = args[7]
 #ct_cluster_num = as.numeric(args[5])
 #meta_IS_num = as.numeric(args[6])
 
@@ -163,10 +164,11 @@ MetaIS_meansig_mat = cbind(unique_MetaIS, MetaIS_meansig_mat)
 write.table(MetaIS_meansig_mat, paste0(outputname, '.metaISid.meansigmat.txt'), quote=F, sep='\t', col.names=F, row.names=F)
 
 ### write MetaIS Functional State matrix
-function_state_mat = read.table(function_matrix, header=F, sep='\t')
-function_state_mat_withMetaISID = cbind(as.data.frame(function_state_mat[,4]), MetaIS_id_pre_cCRE_vec, function_state_mat[,-c(1:4)] )
-write.table(function_state_mat_withMetaISID, paste0(outputname, '.metaIS_all.fun.txt'), quote=F, sep='\t', col.names=F, row.names=F)
-
+if (have_function_state_files!='F'){
+	function_state_mat = read.table(function_matrix, header=F, sep='\t')
+	function_state_mat_withMetaISID = cbind(as.data.frame(function_state_mat[,4]), MetaIS_id_pre_cCRE_vec, function_state_mat[,-c(1:4)] )
+	write.table(function_state_mat_withMetaISID, paste0(outputname, '.metaIS_all.fun.txt'), quote=F, sep='\t', col.names=F, row.names=F)
+}
 
 
 ### reorgnize matrix for output

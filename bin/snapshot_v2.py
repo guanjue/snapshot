@@ -750,7 +750,7 @@ def get_index_set(outputname, signal_matrix_file, count_threshold, log2_sig, nor
 ################################################################################################
 
 ################################################################################################
-def snapshot(master_peak_bed, peak_signal_state_list, genome_size_file, outputname, count_threshold, siglog2, normalization_method, quantile_1, sigsmallnum, function_color_file, cd_tree, input_folder, output_folder, script_folder, qda_num, use_user_thresh):
+def snapshot(master_peak_bed, peak_signal_state_list, genome_size_file, outputname, count_threshold, siglog2, normalization_method, quantile_1, sigsmallnum, function_color_file, cd_tree, input_folder, output_folder, script_folder, qda_num, use_user_thresh, have_function_state_files):
 	### set working directory
 	os.chdir(input_folder)
 
@@ -763,6 +763,11 @@ def snapshot(master_peak_bed, peak_signal_state_list, genome_size_file, outputna
 	index_set_boarder_color = 'gray'
 	index_boarder_color = 'NA'
 	function_method = 'mostfreq'
+
+	################################################################################################
+	print('Check if have function state data...')
+	print('have_function_state_files..: ' + have_function_state_files)
+	################################################################################################	
 
 
 	################################################################################################
@@ -798,14 +803,15 @@ def snapshot(master_peak_bed, peak_signal_state_list, genome_size_file, outputna
 	print('get signal matrix...')
 	get_mark_matrix(outputname, peak_signal_column, peak_signal_state_list, output_file_signal, method, sort_sigbed, script_folder, signal_type)
 
-	### get function label matrix
-	output_file_function = outputname + '.function.matrix.txt'
-	signal_type = 'state'
-	sort_sigbed = 'F'
-	print('get function matrix...')
-	peak_function_column = 1
-	method = 'window'
-	get_mark_matrix(outputname, peak_function_column, peak_signal_state_list, output_file_function, method, sort_sigbed, script_folder, signal_type, genome_size_file)
+	if have_function_state_files != 'F':
+		### get function label matrix
+		output_file_function = outputname + '.function.matrix.txt'
+		signal_type = 'state'
+		sort_sigbed = 'F'
+		print('get function matrix...')
+		peak_function_column = 1
+		method = 'window'
+		get_mark_matrix(outputname, peak_function_column, peak_signal_state_list, output_file_function, method, sort_sigbed, script_folder, signal_type, genome_size_file)
 	################################################################################################
 
 
@@ -856,7 +862,7 @@ def snapshot(master_peak_bed, peak_signal_state_list, genome_size_file, outputna
 	################################################################################################
 	###### get Meta-ISs matrix
 	print('05: get Meta-ISs matrix')
-	call('time Rscript ' + script_folder + 'get_meta_IS.R ' + outputname+'.meansig.txt' + ' ' + peak_signal_state_list + ' ' + outputname+'.sig.txt' + ' ' + outputname + ' ' + merge_pk_name + ' ' + outputname+'.function.matrix.txt', shell=True)
+	call('time Rscript ' + script_folder + 'get_meta_IS.R ' + outputname+'.meansig.txt' + ' ' + peak_signal_state_list + ' ' + outputname+'.sig.txt' + ' ' + outputname + ' ' + merge_pk_name + ' ' + outputname+'.function.matrix.txt' + ' ' + have_function_state_files, shell=True)
 	### read Meta-IS-IDs
 	MetaIS_id_vec = read2d_array(outputname+'.metaISid.mat.txt', str)[:,15]
 	MetaIS_id_vec = MetaIS_id_vec.astype(int)
@@ -874,31 +880,32 @@ def snapshot(master_peak_bed, peak_signal_state_list, genome_size_file, outputna
 
 	################################################################################################
 	###### get index_set matrices
-	print('06: get function matrix')
-	index_set_function_matrix = read2d_array(outputname+'.function.matrix.txt', str)[:,4:]
-	index_set_function_matrix = index_set_function_matrix.astype('int')
-	###
-	state_color_mat = read2d_array(function_color_file, str)
-	state_color_vec = state_color_mat[:,1]
-	state_color_mat = np.array([string.split(",") for string in state_color_vec])
-	state_color_mat = state_color_mat.astype(int)
-	### get index set most frequent functional state matrix
-	META_index_set_mostfreqfun_matrix = []
-	#for index in MetaIS_id_vec_unique:
-	for i in range(np.min(MetaIS_id_vec_unique), np.max(MetaIS_id_vec_unique)+1):
-		index = i
-		print(index)
-		matrix = np.array(index_set_function_matrix[MetaIS_id_vec==index,:], dtype = float)
-		### extract the most frequent functional state in each index set
-		matrix_col = matrix_col_cal_merge(matrix, frequent, state_color_mat)
-		### append most frequent functional state
-		META_index_set_mostfreqfun_matrix.append( matrix_col )
-	### cbind index_set_label and most frequent functional state matrix
-	META_index_set_mostfreqfun_matrix = np.concatenate((MetaIS_id_vec_unique.reshape(MetaIS_id_vec_unique.shape[0], 1), META_index_set_mostfreqfun_matrix), axis=1)
-	print(META_index_set_mostfreqfun_matrix)
-	write2d_array(META_index_set_mostfreqfun_matrix, outputname+'.metaIS.fun.txt')
-	call('sort -k1,1n ' + outputname+'.metaIS.fun.txt' + ' > ' + outputname+'.metaIS.fun.sort.txt', shell=True)
-	call('time Rscript ' + script_folder + 'plot_rect.1.R ' + outputname+'.metaIS.fun.sort.txt' + ' ' + outputname+'.Meta_indexset_fun.png' + ' ' + peak_signal_state_list + ' ' + index_set_boarder_color, shell=True)
+	if have_function_state_files != 'F':
+		print('06: get function matrix')
+		index_set_function_matrix = read2d_array(outputname+'.function.matrix.txt', str)[:,4:]
+		index_set_function_matrix = index_set_function_matrix.astype('int')
+		###
+		state_color_mat = read2d_array(function_color_file, str)
+		state_color_vec = state_color_mat[:,1]
+		state_color_mat = np.array([string.split(",") for string in state_color_vec])
+		state_color_mat = state_color_mat.astype(int)
+		### get index set most frequent functional state matrix
+		META_index_set_mostfreqfun_matrix = []
+		#for index in MetaIS_id_vec_unique:
+		for i in range(np.min(MetaIS_id_vec_unique), np.max(MetaIS_id_vec_unique)+1):
+			index = i
+			print(index)
+			matrix = np.array(index_set_function_matrix[MetaIS_id_vec==index,:], dtype = float)
+			### extract the most frequent functional state in each index set
+			matrix_col = matrix_col_cal_merge(matrix, frequent, state_color_mat)
+			### append most frequent functional state
+			META_index_set_mostfreqfun_matrix.append( matrix_col )
+		### cbind index_set_label and most frequent functional state matrix
+		META_index_set_mostfreqfun_matrix = np.concatenate((MetaIS_id_vec_unique.reshape(MetaIS_id_vec_unique.shape[0], 1), META_index_set_mostfreqfun_matrix), axis=1)
+		print(META_index_set_mostfreqfun_matrix)
+		write2d_array(META_index_set_mostfreqfun_matrix, outputname+'.metaIS.fun.txt')
+		call('sort -k1,1n ' + outputname+'.metaIS.fun.txt' + ' > ' + outputname+'.metaIS.fun.sort.txt', shell=True)
+		call('time Rscript ' + script_folder + 'plot_rect.1.R ' + outputname+'.metaIS.fun.sort.txt' + ' ' + outputname+'.Meta_indexset_fun.png' + ' ' + peak_signal_state_list + ' ' + index_set_boarder_color, shell=True)
 	################################################################################################
 
 
@@ -933,35 +940,37 @@ def snapshot(master_peak_bed, peak_signal_state_list, genome_size_file, outputna
 	call('mv *.index_set.bed '+outputname+'_IndexSets_bed_files/', shell=True)
 
 	###### for functional state
-	### plot heatmaps functional
-	if function_method == 'mostfreq':
-		### plot functional state
-		print('11: use plot_rect to plot function heatmap...')
-		#call('time Rscript ' + script_folder + 'plot_rect.R ' + outputname+'.indexset_fun.txt' + ' ' + outputname+'.indexset_fun.png' + ' ' + peak_signal_state_list + ' ' + function_color_file + ' ' + str(index_set_fun_matrix_start_col) + ' ' + index_set_boarder_color, shell=True)
-		call('time Rscript ' + script_folder + 'plot_rect.1.R ' + outputname+'.indexset_fun.txt' + ' ' + outputname+'.indexset_fun.png' + ' ' + peak_signal_state_list + ' ' + index_set_boarder_color, shell=True)
-		### plot tree
-		print('12: plot functional state of cell differentiation tree')
-		call('if [ ! -d fun_tree_IndexSet ]; then mkdir fun_tree_IndexSet; fi', shell=True)
-		call('time Rscript ' + script_folder + 'plot_tree_multi_color.1.R ' + outputname+'.indexset_fun.txt' + ' ' + cd_tree + ' ' + function_color_file + ' ' + peak_signal_state_list + ' ' + str(index_set_fun_matrix_start_col), shell=True)
-		call('mv *tree.pdf fun_tree_IndexSet/', shell=True)
-		### plot bar
-		print('13: plot functional state barplot...')
-		call('if [ ! -d fun_bar_IndexSet ]; then mkdir fun_bar_IndexSet; fi', shell=True)
-		call('time Rscript ' + script_folder + 'plot_fun_bar.R ' + outputname+'.fun.txt' + ' ' + peak_signal_state_list + ' ' + function_color_file + ' ' + 'bar.pdf' , shell=True)
-		call('mv *bar.pdf fun_bar_IndexSet/', shell=True)
+	if have_function_state_files != 'F':
+		### plot heatmaps functional
+		if function_method == 'mostfreq':
+			### plot functional state
+			print('11: use plot_rect to plot function heatmap...')
+			#call('time Rscript ' + script_folder + 'plot_rect.R ' + outputname+'.indexset_fun.txt' + ' ' + outputname+'.indexset_fun.png' + ' ' + peak_signal_state_list + ' ' + function_color_file + ' ' + str(index_set_fun_matrix_start_col) + ' ' + index_set_boarder_color, shell=True)
+			call('time Rscript ' + script_folder + 'plot_rect.1.R ' + outputname+'.indexset_fun.txt' + ' ' + outputname+'.indexset_fun.png' + ' ' + peak_signal_state_list + ' ' + index_set_boarder_color, shell=True)
+			### plot tree
+			print('12: plot functional state of cell differentiation tree')
+			call('if [ ! -d fun_tree_IndexSet ]; then mkdir fun_tree_IndexSet; fi', shell=True)
+			call('time Rscript ' + script_folder + 'plot_tree_multi_color.1.R ' + outputname+'.indexset_fun.txt' + ' ' + cd_tree + ' ' + function_color_file + ' ' + peak_signal_state_list + ' ' + str(index_set_fun_matrix_start_col), shell=True)
+			call('mv *tree.pdf fun_tree_IndexSet/', shell=True)
+			### plot bar
+			print('13: plot functional state barplot...')
+			call('if [ ! -d fun_bar_IndexSet ]; then mkdir fun_bar_IndexSet; fi', shell=True)
+			call('time Rscript ' + script_folder + 'plot_fun_bar.R ' + outputname+'.fun.txt' + ' ' + peak_signal_state_list + ' ' + function_color_file + ' ' + 'bar.pdf' , shell=True)
+			call('mv *bar.pdf fun_bar_IndexSet/', shell=True)
 
 
-		### plot tree
-		print('14: plot mean signal of cell differentiation tree')
-		call('if [ ! -d signal_tree_MetaIS ]; then mkdir signal_tree_MetaIS; fi', shell=True)
-		call('time Rscript ' + script_folder + 'plot_tree.R ' + outputname+'.metaISid.meansigmat.txt' + ' ' + cd_tree + ' ' + peak_signal_state_list + ' ' + str(index_set_sig_matrix_start_col) + ' ' + signal_high_color + ' ' + signal_low_color + ' ' + siglog2 + ' ' + str(sigsmallnum), shell=True)
-		call('mv *tree.pdf signal_tree_MetaIS/', shell=True)
-		### plot violin
-		print('15: plot signal violin plot & create index set bed files ...')
-		call('if [ ! -d signal_violin_MetaIS ]; then mkdir signal_violin_MetaIS; fi', shell=True)
-		call('time Rscript ' + script_folder + 'plot_sig_violin.metaIS.R ' + outputname+'.MetaIS.forviolin.sig.txt' + ' ' + peak_signal_state_list + ' ' + 'violin.pdf' + ' ' + outputname + '.sort.bed' , shell=True)
-		call('mv *violin.pdf signal_violin_MetaIS/', shell=True)
+	### plot tree
+	print('14: plot mean signal of cell differentiation tree')
+	call('if [ ! -d signal_tree_MetaIS ]; then mkdir signal_tree_MetaIS; fi', shell=True)
+	call('time Rscript ' + script_folder + 'plot_tree.R ' + outputname+'.metaISid.meansigmat.txt' + ' ' + cd_tree + ' ' + peak_signal_state_list + ' ' + str(index_set_sig_matrix_start_col) + ' ' + signal_high_color + ' ' + signal_low_color + ' ' + siglog2 + ' ' + str(sigsmallnum), shell=True)
+	call('mv *tree.pdf signal_tree_MetaIS/', shell=True)
+	### plot violin
+	print('15: plot signal violin plot & create index set bed files ...')
+	call('if [ ! -d signal_violin_MetaIS ]; then mkdir signal_violin_MetaIS; fi', shell=True)
+	call('time Rscript ' + script_folder + 'plot_sig_violin.metaIS.R ' + outputname+'.MetaIS.forviolin.sig.txt' + ' ' + peak_signal_state_list + ' ' + 'violin.pdf' + ' ' + outputname + '.sort.bed' , shell=True)
+	call('mv *violin.pdf signal_violin_MetaIS/', shell=True)
 
+	if have_function_state_files != 'F':
 		### plot tree
 		print('16: plot functional state of cell differentiation tree')
 		call('if [ ! -d fun_tree_MetaIS ]; then mkdir fun_tree_MetaIS; fi', shell=True)
@@ -973,9 +982,11 @@ def snapshot(master_peak_bed, peak_signal_state_list, genome_size_file, outputna
 		call('time Rscript ' + script_folder + 'plot_fun_bar.MetaIS.R ' + outputname+'.metaIS_all.fun.txt' + ' ' + peak_signal_state_list + ' ' + function_color_file + ' ' + '.metaIS.bar.pdf' , shell=True)
 		call('mv *bar.pdf fun_bar_MetaIS/', shell=True)
 		### 
-		print('18: add colnames...')
-		call('time Rscript ' + script_folder + 'add_colnames.R ' + outputname+'.index.matrix.txt' + ' ' + peak_signal_state_list, shell=True)
-		call('time Rscript ' + script_folder + 'add_colnames.R ' + outputname+'.signal.matrix.txt' + ' ' + peak_signal_state_list, shell=True)
+	print('18: add colnames...')
+	call('time Rscript ' + script_folder + 'add_colnames.R ' + outputname+'.index.matrix.txt' + ' ' + peak_signal_state_list, shell=True)
+	call('time Rscript ' + script_folder + 'add_colnames.R ' + outputname+'.signal.matrix.txt' + ' ' + peak_signal_state_list, shell=True)
+		
+	if have_function_state_files != 'F':
 		call('time Rscript ' + script_folder + 'add_colnames.R ' + outputname+'.function.matrix.txt' + ' ' + peak_signal_state_list, shell=True)
 
 
@@ -992,24 +1003,28 @@ def snapshot(master_peak_bed, peak_signal_state_list, genome_size_file, outputna
 	### mv matrix
 	call('mv ' + outputname + '.index.matrix.txt' + ' ' + output_folder, shell=True)
 	call('mv ' + outputname + '.signal.matrix.txt' + ' ' + output_folder, shell=True)
-	call('mv ' + outputname + '.function.matrix.txt' + ' ' + output_folder, shell=True)
+	if have_function_state_files != 'F':
+		call('mv ' + outputname + '.function.matrix.txt' + ' ' + output_folder, shell=True)
 	###
 	call('mv ' + outputname + '.index_binary_mat.txt' + ' ' + output_folder + '/IndexSet_output', shell=True)
 	call('mv ' + outputname + '.meansig.txt' + ' ' + output_folder + '/IndexSet_output', shell=True)
 	call('mv ' + outputname + '.sig.txt' + ' ' + output_folder + '/IndexSet_output', shell=True)
-	call('mv ' + outputname + '.indexset_fun.txt' + ' ' + output_folder + '/IndexSet_output', shell=True)
-	call('mv ' + outputname + '.fun.txt' + ' ' + output_folder + '/IndexSet_output', shell=True)
 	call('mv ' + outputname + '.change_num_array.txt' + ' ' + output_folder + '/IndexSet_output', shell=True)
 	call('mv ' + outputname + '.index.matrix.txt.NB_count_thresh.txt' + ' ' + output_folder + '/IndexSet_output', shell=True)
 	call('mv ' + outputname + '.index.matrix.txt.IS_num_vs_FDRthresh.pdf' + ' ' + output_folder + '/IndexSet_output', shell=True)
+	if have_function_state_files != 'F':
+		call('mv ' + outputname + '.indexset_fun.txt' + ' ' + output_folder + '/IndexSet_output', shell=True)
+		call('mv ' + outputname + '.fun.txt' + ' ' + output_folder + '/IndexSet_output', shell=True)
+
 	### Meta-Index-Set matrix
 	call('mv ' + outputname + '.IS_metaISid.mat.final.txt' + ' ' + output_folder, shell=True)
 	call('mv ' + outputname + '.meta_cluster_cCRE_ave_merge.pdf' + ' ' + output_folder, shell=True)
 	call('mv ' + outputname + '.IS_cluster.AIC.pdf' + ' ' + output_folder + '/MetaIndexSet_output', shell=True)
 	call('mv ' + outputname + '.meta_cluster_ave.pdf' + ' ' + output_folder + '/MetaIndexSet_output', shell=True)
 	call('mv ' + outputname + '.meta_cluster_label.pdf' + ' ' + output_folder + '/MetaIndexSet_output', shell=True)
-	call('mv ' + outputname + '.metaIS.fun.txt' + ' ' + output_folder + '/MetaIndexSet_output', shell=True)
 	call('mv ' + outputname + '.metaISid.meansigmat.txt' + ' ' + output_folder + '/MetaIndexSet_output', shell=True)
+	if have_function_state_files != 'F':
+		call('mv ' + outputname + '.metaIS.fun.txt' + ' ' + output_folder + '/MetaIndexSet_output', shell=True)
 
 	### index set merged figures
 	call('mv *.png ' + output_folder, shell=True)
@@ -1018,20 +1033,23 @@ def snapshot(master_peak_bed, peak_signal_state_list, genome_size_file, outputna
 	call('mv '+outputname+'_IndexSets_bed_files ' + output_folder, shell=True)
 	call('mv signal_tree_IndexSet ' + output_folder + '/IndexSet_output', shell=True)
 	call('mv signal_violin_IndexSet ' + output_folder + '/IndexSet_output', shell=True)
-	call('mv fun_tree_IndexSet ' + output_folder + '/IndexSet_output', shell=True)
-	call('mv fun_bar_IndexSet ' + output_folder + '/IndexSet_output', shell=True)
+	if have_function_state_files != 'F':
+		call('mv fun_tree_IndexSet ' + output_folder + '/IndexSet_output', shell=True)
+		call('mv fun_bar_IndexSet ' + output_folder + '/IndexSet_output', shell=True)
 	### Meta-Index-Set results
 	call('mv '+outputname+'_MetaISs_bed_files ' + output_folder, shell=True)
 	call('mv signal_tree_MetaIS ' + output_folder + '/MetaIndexSet_output', shell=True)
 	call('mv signal_violin_MetaIS ' + output_folder + '/MetaIndexSet_output', shell=True)
-	call('mv fun_tree_MetaIS ' + output_folder + '/MetaIndexSet_output', shell=True)
-	call('mv fun_bar_MetaIS ' + output_folder + '/MetaIndexSet_output', shell=True)
+	if have_function_state_files != 'F':
+		call('mv fun_tree_MetaIS ' + output_folder + '/MetaIndexSet_output', shell=True)
+		call('mv fun_bar_MetaIS ' + output_folder + '/MetaIndexSet_output', shell=True)
 
 	### remove tmp files
 	call('rm ' + outputname + '.metaISid.mat.txt', shell=True)
-	call('rm ' + outputname + '.metaIS.fun.sort.txt', shell=True)
 	call('rm ' + outputname + '.MetaIS.forviolin.sig.txt', shell=True)
-	call('rm ' + outputname + '.metaIS_all.fun.txt', shell=True)
+	if have_function_state_files != 'F':
+		call('rm ' + outputname + '.metaIS.fun.sort.txt', shell=True)
+		call('rm ' + outputname + '.metaIS_all.fun.txt', shell=True)
 	################################################################################################
 
 
@@ -1043,7 +1061,7 @@ import getopt
 import sys
 def main(argv):
 	try:
-		opts, args = getopt.getopt(argv,"hm:p:n:t:l:z:d:x:f:c:e:i:o:s:q:u:")
+		opts, args = getopt.getopt(argv,"hm:p:n:t:l:z:d:x:f:c:e:i:o:s:q:u:b:")
 	except getopt.GetoptError:
 		print('time python3 snapshot.py -m master_peak_bed[optional] -p peak_signal_state_list[required] -n outputname[required] -t index_set_count_thresh[optional] -l log2_sig[optional] -z scale_sig[optional] -d quantile_1[optional] -x add_small_number[optional] -f genome_chrom_size_file[required] -c function_color_list[required] -e cell_development_tree[required] -i input_folder[required] -o output_folder[required] -b script_folder[required] -q QDA_rescuing_round_number[optional] -u use_user_thresh[optional]')
 		sys.exit(2)
@@ -1084,7 +1102,8 @@ def main(argv):
 			qda_num=int(arg.strip())
 		elif opt=='-u':
 			use_user_thresh = str(arg.strip())
-
+		elif opt=='-b':
+			have_function_state_files = str(arg.strip())
 
 	############ Default parameters
 	###### required parameters
@@ -1151,9 +1170,15 @@ def main(argv):
 		print('Default: Not use user given thresh for index-set number lower lim')
 		use_user_thresh = 'F'
 
+	try:
+		print('Use user provide info for have_function_state_files: -b '+str(have_function_state_files))
+	except NameError:
+		print('Default: Not use user provide info for have_function_state_files')
+		have_function_state_files = 'T'
+
 
 	print('Starting Snapshot pipeline .......')
-	snapshot(master_peak_bed, peak_signal_state_list, genome_size_file, outputname, count_threshold, siglog2, normalization_method, quantile_1, sigsmallnum, function_color_file, cd_tree, input_folder, output_folder, script_folder, qda_num, use_user_thresh)
+	snapshot(master_peak_bed, peak_signal_state_list, genome_size_file, outputname, count_threshold, siglog2, normalization_method, quantile_1, sigsmallnum, function_color_file, cd_tree, input_folder, output_folder, script_folder, qda_num, use_user_thresh, have_function_state_files)
 
 if __name__=="__main__":
 	main(sys.argv[1:])
