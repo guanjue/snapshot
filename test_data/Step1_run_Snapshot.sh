@@ -4,7 +4,7 @@ output_name='snapshot_test_run'
 peak_signal_list_file='peak_signal_state_list.txt'
 IDEAS_state_color_list_file='function_color_list.txt'
 cell_type_tree_file='cd_tree.txt'
-genome_size_file='mm10.chrom.1_19XY.sizes'
+genome_size_file='hg38.chrom.1_22XY.sizes'
 
 ### required folder path
 input_folder='/Users/universe/Documents/projects/snapshot_test_data/input_data/'
@@ -12,7 +12,7 @@ output_folder='/Users/universe/Documents/projects/snapshot_test_data/output_resu
 script_folder='/Users/universe/Documents/projects/snapshot/bin/'
 
 ### optional parameters or input files
-master_peak_bed='/Users/universe/Documents/projects/snapshot/test_data/input_data/S3V2_IDEAS_mm10_ccre2.cCRE.M.notall0.bed'
+master_peak_bed='/Users/universe/Documents/projects/snapshot/test_data/input_data/snapshot_test_run_merge.bedinfo.bed'
 min_number_per_indexset=100
 QDA_round_num=1
 normalization_method=S3norm
