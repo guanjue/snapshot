@@ -18,6 +18,11 @@ QDA_round_num=1
 normalization_method=S3norm
 have_function_state_files=F
 
+### input matrix
+index_matrix_txt='/Users/universe/Documents/projects/snapshot/test_data/input_data/Input_matrix/snapshot_test_run_merge.index.matrix.txt'
+signal_matrix_txt='/Users/universe/Documents/projects/snapshot/test_data/input_data/Input_matrix/snapshot_test_run_merge.signal.matrix.txt'
+function_state_matrix_txt='/Users/universe/Documents/projects/snapshot/test_data/input_data/Input_matrix/snapshot_test_run_merge.function.matrix.txt'
+
 ### run snapshot (CORE!!!)
 echo 'run snapshot :o'
 cd $input_folder
@@ -29,6 +34,10 @@ time python3 $script_folder/snapshot_v2.py -p $peak_signal_list_file \
 -e $cell_type_tree_file \
 -i $input_folder -o $output_folder -s $script_folder \
 -m $master_peak_bed -q $QDA_round_num -z $normalization_method \
--b $have_function_state_files
+-b $have_function_state_files \
+-a $index_matrix_txt \
+-r $signal_matrix_txt \
+-g $function_state_matrix_txt
+
 
 echo 'complete :)'

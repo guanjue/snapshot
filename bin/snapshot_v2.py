@@ -750,7 +750,7 @@ def get_index_set(outputname, signal_matrix_file, count_threshold, log2_sig, nor
 ################################################################################################
 
 ################################################################################################
-def snapshot(master_peak_bed, peak_signal_state_list, genome_size_file, outputname, count_threshold, siglog2, normalization_method, quantile_1, sigsmallnum, function_color_file, cd_tree, input_folder, output_folder, script_folder, qda_num, use_user_thresh, have_function_state_files):
+def snapshot(master_peak_bed, peak_signal_state_list, genome_size_file, outputname, count_threshold, siglog2, normalization_method, quantile_1, sigsmallnum, function_color_file, cd_tree, input_folder, output_folder, script_folder, qda_num, use_user_thresh, have_function_state_files, index_matrix_txt, signal_matrix_txt, function_state_matrix_txt):
 	### set working directory
 	os.chdir(input_folder)
 
@@ -792,7 +792,12 @@ def snapshot(master_peak_bed, peak_signal_state_list, genome_size_file, outputna
 	sort_sigbed = 'T'
 	method = 'intersect'
 	print('get binary matrix...')
-	get_mark_matrix(outputname, peak_label_column, peak_signal_state_list, output_file_index, method, sort_sigbed, script_folder, signal_type)
+	if index_matrix_txt=='F':
+		print('Generate Index matrix')
+		get_mark_matrix(outputname, peak_label_column, peak_signal_state_list, output_file_index, method, sort_sigbed, script_folder, signal_type)
+	else:
+		print('Use user provided index matrix')
+		call('cp '+index_matrix_txt + ' ' + output_file_index, shell=True)
 
 	### get signal matrix
 	peak_signal_column = 5
@@ -801,7 +806,12 @@ def snapshot(master_peak_bed, peak_signal_state_list, genome_size_file, outputna
 	sort_sigbed = 'T'
 	method = 'map'
 	print('get signal matrix...')
-	get_mark_matrix(outputname, peak_signal_column, peak_signal_state_list, output_file_signal, method, sort_sigbed, script_folder, signal_type)
+	if signal_matrix_txt=='F':
+		print('Generate signal matrix')
+		get_mark_matrix(outputname, peak_signal_column, peak_signal_state_list, output_file_signal, method, sort_sigbed, script_folder, signal_type)
+	else:
+		print('Use user provided signal matrix')
+		call('cp '+signal_matrix_txt + ' ' + output_file_signal, shell=True)
 
 	if have_function_state_files != 'F':
 		### get function label matrix
@@ -811,7 +821,12 @@ def snapshot(master_peak_bed, peak_signal_state_list, genome_size_file, outputna
 		print('get function matrix...')
 		peak_function_column = 1
 		method = 'window'
-		get_mark_matrix(outputname, peak_function_column, peak_signal_state_list, output_file_function, method, sort_sigbed, script_folder, signal_type, genome_size_file)
+		if function_state_matrix_txt == 'F':
+			print('Generate functional state matrix')
+			get_mark_matrix(outputname, peak_function_column, peak_signal_state_list, output_file_function, method, sort_sigbed, script_folder, signal_type, genome_size_file)
+		else:
+			print('Use user provided functional state matrix')
+			call('cp '+function_state_matrix_txt + ' ' + output_file_function, shell=True)
 	################################################################################################
 
 
@@ -1061,7 +1076,7 @@ import getopt
 import sys
 def main(argv):
 	try:
-		opts, args = getopt.getopt(argv,"hm:p:n:t:l:z:d:x:f:c:e:i:o:s:q:u:b:")
+		opts, args = getopt.getopt(argv,"hm:p:n:t:l:z:d:x:f:c:e:i:o:s:q:u:b:a:r:g:")
 	except getopt.GetoptError:
 		print('time python3 snapshot.py -m master_peak_bed[optional] -p peak_signal_state_list[required] -n outputname[required] -t index_set_count_thresh[optional] -l log2_sig[optional] -z scale_sig[optional] -d quantile_1[optional] -x add_small_number[optional] -f genome_chrom_size_file[required] -c function_color_list[required] -e cell_development_tree[required] -i input_folder[required] -o output_folder[required] -b script_folder[required] -q QDA_rescuing_round_number[optional] -u use_user_thresh[optional]')
 		sys.exit(2)
@@ -1103,7 +1118,14 @@ def main(argv):
 		elif opt=='-u':
 			use_user_thresh = str(arg.strip())
 		elif opt=='-b':
-			have_function_state_files = str(arg.strip())
+			index = str(arg.strip())
+		elif opt=='-a':
+			index_matrix_txt = str(arg.strip())
+		elif opt=='-r':
+			signal_matrix_txt = str(arg.strip())
+		elif opt=='-g':
+			function_state_matrix_txt = str(arg.strip())
+
 
 	############ Default parameters
 	###### required parameters
@@ -1176,9 +1198,29 @@ def main(argv):
 		print('Default: Not use user provide info for have_function_state_files')
 		have_function_state_files = 'T'
 
+	try:
+		print('Use user provide index_matrix.txt: -a '+str(index_matrix_txt))
+	except NameError:
+		print('Default: Not use user provide index_matrix.txt')
+		index_matrix_txt = 'F'
+
+	try:
+		print('Use user provide signal_matrix.txt: -a '+str(signal_matrix_txt))
+	except NameError:
+		print('Default: Not use user provide signal_matrix.txt')
+		signal_matrix_txt = 'F'
+
+	try:
+		print('Use user provide function_state_matrix.txt: -a '+str(function_state_matrix_txt))
+	except NameError:
+		print('Default: Not use user provide function_state_matrix.txt')
+		function_state_matrix_txt = 'F'
+
+
+
 
 	print('Starting Snapshot pipeline .......')
-	snapshot(master_peak_bed, peak_signal_state_list, genome_size_file, outputname, count_threshold, siglog2, normalization_method, quantile_1, sigsmallnum, function_color_file, cd_tree, input_folder, output_folder, script_folder, qda_num, use_user_thresh, have_function_state_files)
+	snapshot(master_peak_bed, peak_signal_state_list, genome_size_file, outputname, count_threshold, siglog2, normalization_method, quantile_1, sigsmallnum, function_color_file, cd_tree, input_folder, output_folder, script_folder, qda_num, use_user_thresh, have_function_state_files, index_matrix_txt, signal_matrix_txt, function_state_matrix_txt)
 
 if __name__=="__main__":
 	main(sys.argv[1:])
