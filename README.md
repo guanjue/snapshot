@@ -127,7 +127,7 @@ total 9408
 ##
 ## Visualization figures
 ##### Average ATAC-seq signals heatmap in all MetaISs.
-<img src="https://raw.githubusercontent.com/guanjue/snapshot/master/test_data/example/snapshot_test_run_merge.meta_cluster_cCRE_ave_merge.png" width="500" height="1000">
+<img src="https://raw.githubusercontent.com/guanjue/snapshot/master/test_data/example/snapshot_test_run_merge.meta_cluster_cCRE_ave_merge.png" width="500" height="700">
 
 ##### Cell type differentiation tree (MetaIS-8): Cell differentiation Tree of Average signals
 <img src="https://raw.githubusercontent.com/guanjue/snapshot/master/test_data/example/8.peak_signal_state_list.merge.txt8.tree.png" width="500" height="500">
