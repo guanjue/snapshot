@@ -31,50 +31,53 @@ The Snapshot Installation Guide can be found at [Installation Guide](https://git
 
 ## 
 ## Snapshot Input data
-### 1: epigenomic data
 User can choose to either directly input the index matrix, signal matrix, and functional epigenetic state matrix. The format for these matrices can be found at [Input Matrix format](https://github.com/guanjue/snapshot/blob/main/INPUT_format_matrix.md).
 
 Alternatively, the user can generate these matrices from raw data, including a peak bed file, a signal bigWig file, and a functional epigenetic state bigBed file. Information on how to use raw data as input for Snapshot can be found at [Input format for Raw data](https://github.com/guanjue/snapshot/blob/main/INPUT_format_raw.md).
-
-### 2: Parameter setting file
-
-```
-cat test_data/run_snapshot.parameter.settings.info.txt 
-##################################
-### required parameters or input files
-output_name	snapshot_test_run
-peak_signal_list_file	peak_signal_state_list.txt
-IDEAS_state_color_list_file	function_color_list.txt
-cell_type_tree_file	cd_tree.txt
-genome_size_file	hg38.chrom.1_22XY.sizes
-
-### required folder path
-input_folder	/Users/universe/Documents/projects/snapshot_test_data/input_data/
-output_folder	/Users/universe/Documents/projects/snapshot_test_data/output_result/
-script_folder	/Users/universe/Documents/projects/snapshot/bin/
-
-### optional parameters or input files
-master_peak_bed	/Users/universe/Documents/projects/snapshot/test_data/input_data/snapshot_test_run_merge.bedinfo.bed
-min_number_per_indexset	100
-QDA_round_num	1
-normalization_method	S3norm
-have_function_state_files	T
-
-### input matrix
-index_matrix_txt	/Users/universe/Documents/projects/snapshot/test_data/input_data/Input_matrix/snapshot_test_run_merge.index.matrix.txt
-signal_matrix_txt	/Users/universe/Documents/projects/snapshot/test_data/input_data/Input_matrix/snapshot_test_run_merge.signal.matrix.txt
-function_state_matrix_txt	/Users/universe/Documents/projects/snapshot/test_data/input_data/Input_matrix/snapshot_test_run_merge.function.matrix.txt
-
-```
 
 ## 
 ## Running Snapshot
 
 ### Step 1: Modify the Script
-Before running Snapshot, you need to modify the script file Step1_run_Snapshot.sh by updating the following paths:
+Before running Snapshot, you need to provide the required input parameters and file paths in a `run_snapshot.parameter.settings.info.txt` file. The file should include the following information:
+
+```
+cat test_data/run_snapshot.parameter.settings.info.hg38.ct13.txt 
+##################################
+### required parameters or input files
+output_name	snapshot_test_run_merge
+peak_signal_list_file	peak_signal_state_list.merge.txt
+IDEAS_state_color_list_file	function_color_list.txt
+cell_type_tree_file	cd_tree.txt
+genome_size_file	/Users/universe/Downloads/Snapshot_test/input_data_hg38/hg38.chrom.1_22XY.sizes
+
+### required folder path
+input_folder	/Users/universe/Downloads/Snapshot_test/input_data_hg38/
+output_folder	/Users/universe/Downloads/Snapshot_test/input_data_hg38/hg38_outputs/hg38_chrAll_analysis_merge/
+script_folder	/Users/universe/Documents/projects/snapshot/bin/
+
+### optional parameters or input files
+master_peak_bed	/Users/universe/Downloads/Snapshot_test/input_data_hg38/snapshot_test_run_merge.bedinfo.bed
+min_number_per_indexset	100
+normalization_method	S3norm
+have_function_state_files	T
+
+### input matrix
+index_matrix_txt	/Users/universe/Downloads/Snapshot_test/input_data_hg38/used_input_matrix/snapshot_test_run_merge.index.matrix.txt
+signal_matrix_txt	/Users/universe/Downloads/Snapshot_test/input_data_hg38/used_input_matrix/snapshot_test_run_merge.signal.matrix.txt
+function_state_matrix_txt	/Users/universe/Downloads/Snapshot_test/input_data_hg38/used_input_matrix/snapshot_test_run_merge.function.matrix.txt
+
+```
 
 ### Step 2: Execute the Script
-The `Step1_run_Snapshot.sh` script is a pipeline that runs the `snapshot_v2.py` program, which is the main component of Snapshot. The script sets various required and optional parameters and input files, which are passed as arguments to the snapshot_v2.py program. The input files are specified as absolute file paths and include:
+The `Step1_run_Snapshot.sh` script is a pipeline that runs the `snapshot_v2.py` program, which is the main component of Snapshot. The script read various required and optional parameters and input files in the `run_snapshot.parameter.settings.info.txt` file, which are passed as arguments to the snapshot_v2.py program. The following bash command can be use to run Snapshot:
+```
+### run Snapshot
+time bash Step1_run_Snapshot.sh run_snapshot.parameter.settings.info.hg38.ct13.txt 2> run_snapshot.parameter.settings.info.hg38.ct13.log.txt
+
+```
+
+
 
 ## RUN Snapshot
 ##### (1) User need to change the script_folder, input_folder, output_folder, in 'Step1_run_Snapshot.sh' file. 
