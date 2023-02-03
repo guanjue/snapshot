@@ -26,7 +26,8 @@
 
 
 
-# Snapshot Installation Guide
+## Snapshot Installation Guide can be found at [Installation Guide](https://github.com/guanjue/snapshot/blob/main/INSTALL.md).
+
 
 ## Dependencies
 The following packages and tools are required to run Snapshot:
