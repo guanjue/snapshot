@@ -79,10 +79,10 @@ For the test data using matrice as input data, the Snapshot take 2min to run (Ma
 ![logo](https://raw.githubusercontent.com/guanjue/snapshot/master/test_data/example/snapshot_test_run_merge.meansig.png)
 
 ##### Cell type differentiation tree (MetaIS-8): Cell differentiation Tree of Average signals
-![logo](https://raw.githubusercontent.com/guanjue/snapshot/master/test_data/example/8.peak_signal_state_list.merge.txt8.tree)
+![logo](https://raw.githubusercontent.com/guanjue/snapshot/master/test_data/example/8.peak_signal_state_list.merge.txt8.tree.png)
 
 ##### Cell type differentiation tree (MetaIS-8): Cell differentiation Tree of Functional Epigenetic States
-![logo](https://raw.githubusercontent.com/guanjue/snapshot/main/test_data/example/8.peak_signal_state_list.merge.txt.tree)
+![logo](https://raw.githubusercontent.com/guanjue/snapshot/main/test_data/example/8.peak_signal_state_list.merge.txt.tree.png)
 
 ##### Cell type differentiation tree (MetaIS-8): Violin of peak signals
 ![logo](https://raw.githubusercontent.com/guanjue/snapshot/master/test_data/example/8.violin.png)
