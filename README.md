@@ -35,23 +35,14 @@ User can choose to either directly input the index matrix, signal matrix, and fu
 
 Alternatively, the user can generate these matrices from raw data, including a peak bed file, a signal bigWig file, and a functional epigenetic state bigBed file. Information on how to use raw data as input for Snapshot can be found at [Input format for Raw data](https://github.com/guanjue/snapshot/blob/main/INPUT_format_raw.md).
 
-
-
 ## 
 ## Running Snapshot
+
+### Step 1: Modify the Script
+Before running Snapshot, you need to modify the script file Step1_run_Snapshot.sh by updating the following paths:
+
 ### Step 2: Execute the Script
-This script is a pipeline that runs the `snapshot_v2.py` program for analyzing genomic data. The script specifies various required and optional parameters and input files, which are passed as arguments to the program. The input files include:
-
-### The `Step1_run_Snapshot.sh` script is a pipeline that runs the `snapshot_v2.py` program, which is the main component of Snapshot. The script sets various required and optional parameters and input files, which are passed as arguments to the snapshot_v2.py program. The input files are specified as absolute file paths and include:
-
-
-
-
-
-
-
-
-
+The `Step1_run_Snapshot.sh` script is a pipeline that runs the `snapshot_v2.py` program, which is the main component of Snapshot. The script sets various required and optional parameters and input files, which are passed as arguments to the snapshot_v2.py program. The input files are specified as absolute file paths and include:
 
 ## RUN Snapshot
 ##### (1) User need to change the script_folder, input_folder, output_folder, in 'Step1_run_Snapshot.sh' file. 
