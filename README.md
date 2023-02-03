@@ -70,7 +70,7 @@ For the test data using matrice as input data, the Snapshot take 2min to run (Ma
 
 
 ## 
-## Output results for testing data
+# Output results for testing data
 All output files will be to the `output_folder`
 ##
 ## Output matrix and bed files
