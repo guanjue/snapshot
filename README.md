@@ -31,7 +31,15 @@ The Snapshot Installation Guide can be found at [Installation Guide](https://git
 
 ## 
 ## Snapshot Input data
-The Snapshot Installation Guide can be found at [Input format](https://github.com/guanjue/snapshot/blob/main/INPUT_format.md).
+User can choose to either directly input the index matrix, signal matrix, and functional epigenetic state matrix. The format for these matrices can be found at [Input Matrix format](https://github.com/guanjue/snapshot/blob/main/INPUT_format_matrix.md).
+
+Alternatively, the user can generate these matrices from raw data, including a peak bed file, a signal bigWig file, and a functional epigenetic state bigBed file. Information on how to use raw data as input for Snapshot can be found at [Input format for Raw data](https://github.com/guanjue/snapshot/blob/main/INPUT_format_raw.md).
+
+
+User can choose to direct input the index matrix, signal matrix, and functional epigenetic state matrix. The format of these matrices can be found at [Input Matrix format](https://github.com/guanjue/snapshot/blob/main/INPUT_format_matrix.md).
+
+User can choose to generate these matrices from the raw data, which include the peak bed file, the signal bigWig file, and functional epigenetic state bigBed file. 
+The details of how to use raw input as the input for snapshot can be found at [Input format for Raw data](https://github.com/guanjue/snapshot/blob/main/INPUT_format.md).
 
 ### The cell type peak & signal & epigenetic-state file list:
 The 1st column is the cell type label;
