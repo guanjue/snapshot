@@ -71,15 +71,17 @@ For the test data using matrice as input data, the Snapshot take 2min to run (Ma
 
 ## 
 ## Output results for testing data
-
-#### cCRE matrix signal matrix with Index-Set-IDs & Meta-Index-Set-IDs
-- The 1st column is the cCRE chromosome;
-- The 2nd column is the cCRE start_position;
-- The 3rd column is the cCRE end_position;
-- The 4th column is the cCRE IDs.
-- The 5th column is the Index-Sets-IDs.
-- The 6th column is the Meta-Index-Sets-IDs.
-- The following columns are the signal of each cCRE at each cell-type.
+All output files will be to the `output_folder`
+##
+## Output matrix and bed files
+- cCRE matrix signal matrix with Index-Set-IDs & Meta-Index-Set-IDs
+  - The 1st column is the cCRE chromosome;
+  - The 2nd column is the cCRE start_position;
+  - The 3rd column is the cCRE end_position;
+  - The 4th column is the cCRE IDs.
+  - The 5th column is the Index-Sets-IDs.
+  - The 6th column is the Meta-Index-Sets-IDs.
+  - The following columns are the signal of each cCRE at each cell-type.
 ```
 >>> head snapshot_test_run_merge.IS_metaISid.mat.final.txt
 #chr	start	end	cCREsID	IndexSetID	MetaISID	HSC	LMPP	MPP	CMP	MEP	ERY	GMP	MONp	CLP	B	NK	TCD4	TCD8
@@ -94,8 +96,38 @@ chr1	897400	897600	9	0_0_0_0_0_0_0_0_0_1_0_1_1	1	1.53842142233806	1.291927116359
 chr1	904600	904800	10	1_1_1_1_1_0_1_0_0_1_0_0_0	12	5.26923047224513	14.0611210261117	5.15381893924735	4.82572836125573	2.72287385250705	1.3955775364944	5.81118557760322	4.06554107632315	3.33496820436231	4.61386162021539	1.29543280721009	1.25847476344551	1.1509968349721
 ```
 
+- The bed file of each Meta-Index-Set and each Index-Set
+```
+### bed files for each Meta-Index-Set
+ls -ltrh snapshot_test_run_merge_MetaISs_bed_files | head
+total 5328
+-rw-r--r--  1 universe    59K Feb  3 13:34 MetaIS.19.bed
+-rw-r--r--  1 universe   469K Feb  3 13:34 MetaIS.1.bed
+-rw-r--r--  1 universe    28K Feb  3 13:34 MetaIS.5.bed
+-rw-r--r--  1 universe   635K Feb  3 13:34 MetaIS.3.bed
+-rw-r--r--  1 universe   206K Feb  3 13:34 MetaIS.7.bed
+-rw-r--r--  1 universe   197K Feb  3 13:34 MetaIS.10.bed
+-rw-r--r--  1 universe    67K Feb  3 13:34 MetaIS.12.bed
+-rw-r--r--  1 universe    87K Feb  3 13:34 MetaIS.16.bed
+-rw-r--r--  1 universe    92K Feb  3 13:34 MetaIS.2.bed
 
-### All output files will be to the `output_folder`
+### bed files for each Index-Set
+ls -ltrh snapshot_test_run_merge_IndexSets_bed_files | head
+total 9408
+-rw-r--r--  1 universe    73K Feb  3 13:34 1.0_0_0_0_0_0_0_0_0_0_0_0_1.index_set.bed
+-rw-r--r--  1 universe   137K Feb  3 13:34 2.0_0_0_0_0_0_0_0_0_0_0_1_0.index_set.bed
+-rw-r--r--  1 universe   152K Feb  3 13:34 3.0_0_0_0_0_0_0_0_0_0_0_1_1.index_set.bed
+-rw-r--r--  1 universe    67K Feb  3 13:34 4.0_0_0_0_0_0_0_0_0_0_1_0_0.index_set.bed
+-rw-r--r--  1 universe    86K Feb  3 13:34 5.0_0_0_0_0_0_0_0_0_0_1_0_1.index_set.bed
+-rw-r--r--  1 universe    87K Feb  3 13:34 6.0_0_0_0_0_0_0_0_0_0_1_1_1.index_set.bed
+-rw-r--r--  1 universe   242K Feb  3 13:34 7.0_0_0_0_0_0_0_0_0_1_0_0_0.index_set.bed
+-rw-r--r--  1 universe    47K Feb  3 13:34 8.0_0_0_0_0_0_0_0_0_1_0_0_1.index_set.bed
+-rw-r--r--  1 universe    43K Feb  3 13:34 9.0_0_0_0_0_0_0_0_0_1_0_1_0.index_set.bed
+
+```
+
+##
+## Visualization figures
 ## The heatmap for Meta-Index-Set
 ##### Average ATAC-seq signals patterns in all MetaISs.
 ![logo](https://raw.githubusercontent.com/guanjue/snapshot/master/test_data/example/snapshot_test_run_merge.meta_cluster_cCRE_ave_merge.png)

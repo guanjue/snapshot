@@ -81,7 +81,7 @@ for (k in c(1:length(index_set_id_uniq_sort))){
 	### save figure
 	#pdf(paste(toString(k-1), '.', toString(index_set_id_uniq_sort[k]), '.', cREs_IDEASpro_outfile, sep=''), dim(signal_matrix)[2]*1+5, dim(signal_matrix)[2]*1+5)
 	pdf(paste(toString(index_set_id_uniq_sort[k]), '.', cREs_IDEASpro_outfile, sep=''), width=7, height=4)
-	barplot(counts_matrix_t, col=my_colorbar)
+	barplot(counts_matrix_t, col=my_colorbar, las=2)
 	dev.off()
 }
 
