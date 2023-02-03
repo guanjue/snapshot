@@ -26,8 +26,8 @@
 
 
 ## 
-
-## Snapshot Installation Guide can be found at [Installation Guide](https://github.com/guanjue/snapshot/blob/main/INSTALL.md).
+## Snapshot Installation Guide 
+The Snapshot Installation Guide can be found at [Installation Guide](https://github.com/guanjue/snapshot/blob/main/INSTALL.md).
 
 
 ## Input data
