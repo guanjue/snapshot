@@ -72,23 +72,23 @@ For the test data using matrice as input data, the Snapshot take 2min to run (Ma
 ## 
 ## Output results for testing data
 ### All output files will be to the `output_folder`
-![logo](https://raw.githubusercontent.com/guanjue/snapshot/master/test_data/example/snapshot_test_run_merge.meta_cluster_cCRE_ave_merge.pdf)
+![logo](https://raw.githubusercontent.com/guanjue/snapshot/master/test_data/example/snapshot_test_run_merge.meta_cluster_cCRE_ave_merge.png)
 
 ## The heatmap for Meta-Index-Set
 ##### Average ATAC-seq signals patterns in all MetaISs.
 ![logo](https://raw.githubusercontent.com/guanjue/snapshot/master/test_data/example/snapshot_test_run_merge.meansig.png)
 
-##### Cell type differentiation system (MetaIS-8): Cell differentiation Tree of Average signals
-![logo](https://raw.githubusercontent.com/guanjue/snapshot/master/test_data/example/31.peak_signal_state_list.tree.signal.png)
+##### Cell type differentiation tree (MetaIS-8): Cell differentiation Tree of Average signals
+![logo](https://raw.githubusercontent.com/guanjue/snapshot/master/test_data/example/8.peak_signal_state_list.merge.txt8.tree)
 
-##### Cell type differentiation system (MetaIS-8): Cell differentiation Tree of Functional Epigenetic States
-![logo](https://raw.githubusercontent.com/guanjue/snapshot/main/test_data/example/31.peak_signal_state_list.tree.state.png)
+##### Cell type differentiation tree (MetaIS-8): Cell differentiation Tree of Functional Epigenetic States
+![logo](https://raw.githubusercontent.com/guanjue/snapshot/main/test_data/example/8.peak_signal_state_list.merge.txt.tree)
 
-##### Cell type differentiation system (MetaIS-8): Violin of peak signals
-![logo](https://raw.githubusercontent.com/guanjue/snapshot/master/test_data/example/31.violin.png)
+##### Cell type differentiation tree (MetaIS-8): Violin of peak signals
+![logo](https://raw.githubusercontent.com/guanjue/snapshot/master/test_data/example/8.violin.png)
 
-##### Cell type differentiation system (MetaIS-8): Barplot of Functional Epigenetic States
-![logo](https://raw.githubusercontent.com/guanjue/snapshot/master/test_data/example/31.bar.png)
+##### Cell type differentiation tree (MetaIS-8): Barplot of Functional Epigenetic States
+![logo](https://raw.githubusercontent.com/guanjue/snapshot/master/test_data/example/8.metaIS.bar.png)
 
 
 ##### Merged peak file (bed format)
