@@ -132,6 +132,9 @@ total 9408
 ##### Cell type differentiation tree (MetaIS-8): Cell differentiation Tree of Average signals
 ![logo](https://raw.githubusercontent.com/guanjue/snapshot/master/test_data/example/8.peak_signal_state_list.merge.txt8.tree.png width="20")
 
+<img src="https://raw.githubusercontent.com/guanjue/snapshot/master/test_data/example/8.peak_signal_state_list.merge.txt8.tree.png" width="30" height="30">
+
+
 ##### Cell type differentiation tree (MetaIS-8): Cell differentiation Tree of Functional Epigenetic States
 ![logo](https://raw.githubusercontent.com/guanjue/snapshot/main/test_data/example/8.peak_signal_state_list.merge.txt.tree.png)
 
