@@ -57,7 +57,7 @@ output_folder	/Users/universe/Downloads/Snapshot_test/input_data_hg38/hg38_outpu
 script_folder	/Users/universe/Documents/projects/snapshot/bin/
 
 ### optional parameters or input files
-master_peak_bed	/Users/universe/Downloads/Snapshot_test/input_data_hg38/snapshot_test_run_merge.bedinfo.bed
+master_peak_bed	/Users/universe/Downloads/Snapshot_test/input_data_hg38/snapshot_test_run_merge.hg38.ct13.bed
 min_number_per_indexset	100
 normalization_method	S3norm
 have_function_state_files	T

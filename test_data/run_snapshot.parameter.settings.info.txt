@@ -12,7 +12,7 @@ output_folder	/Users/universe/Documents/projects/snapshot_test_data/output_resul
 script_folder	/Users/universe/Documents/projects/snapshot/bin/
 
 ### optional parameters or input files
-master_peak_bed	/Users/universe/Documents/projects/snapshot/test_data/input_data/snapshot_test_run_merge.bedinfo.bed
+master_peak_bed	/Users/universe/Documents/projects/snapshot/test_data/input_data/snapshot_test_run_merge.hg38.ct13.bed
 min_number_per_indexset	100
 QDA_round_num	1
 normalization_method	S3norm
