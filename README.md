@@ -130,9 +130,7 @@ total 9408
 ![logo](https://raw.githubusercontent.com/guanjue/snapshot/master/test_data/example/snapshot_test_run_merge.meta_cluster_cCRE_ave_merge.png)
 
 ##### Cell type differentiation tree (MetaIS-8): Cell differentiation Tree of Average signals
-![logo](https://raw.githubusercontent.com/guanjue/snapshot/master/test_data/example/8.peak_signal_state_list.merge.txt8.tree.png width="20")
-
-<img src="https://raw.githubusercontent.com/guanjue/snapshot/master/test_data/example/8.peak_signal_state_list.merge.txt8.tree.png" width="30" height="30">
+<img src="https://raw.githubusercontent.com/guanjue/snapshot/master/test_data/example/8.peak_signal_state_list.merge.txt8.tree.png" width="300" height="300">
 
 
 ##### Cell type differentiation tree (MetaIS-8): Cell differentiation Tree of Functional Epigenetic States
