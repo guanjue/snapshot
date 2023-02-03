@@ -1,9 +1,9 @@
 ### The Index matrix
-The 1st column is the cCRE chromosome;
-The 2nd column is the cCRE start_position;
-The 3rd column is the cCRE end_position;
-The 4th column is the cCRE IDs.
-The following columns are the binary index of each cCRE at each cell-type based on the cCRE presence and absence calls inside a certain cell-type.
+- The 1st column is the cCRE chromosome;
+- The 2nd column is the cCRE start_position;
+- The 3rd column is the cCRE end_position;
+- The 4th column is the cCRE IDs.
+- The following columns are the binary index of each cCRE at each cell-type based on the cCRE presence and absence calls inside a certain cell-type.
 ```
 >>> head input_data/Input_matrix/snapshot_test_run_merge.index.matrix.txt
 #chr	start	end	cCREsID	HSC	LMPP	MPP	CMP	MEP	ERY	GMP	MONp	CLP	B	NK	TCD4	TCD8
@@ -19,11 +19,11 @@ chr1	904600	904800	9	0	0	0	0	0	0	0	0	0	0	0	1	1
 ```
 
 ### The Signal matrix
-The 1st column is the cCRE chromosome;
-The 2nd column is the cCRE start_position;
-The 3rd column is the cCRE end_position;
-The 4th column is the cCRE IDs.
-The following columns are the numeric signal of each cCRE at each cell-type.
+- The 1st column is the cCRE chromosome;
+- The 2nd column is the cCRE start_position;
+- The 3rd column is the cCRE end_position;
+- The 4th column is the cCRE IDs.
+- The following columns are the numeric signal of each cCRE at each cell-type.
 ```
 head input_data/Input_matrix/snapshot_test_run_merge.signal.matrix.txt
 #chr	start	end	cCREsID	HSC	LMPP	MPP	CMP	MEP	ERY	GMP	MONp	CLP	B	NK	TCD4	TCD8
@@ -39,11 +39,11 @@ chr1	904600	904800	9	0.609961	0.344694	0.685021	0.514857	0.109752	0.974417	0.974
 ```
 
 ### The Functional Epigenetic State matrix
-The 1st column is the cCRE chromosome;
-The 2nd column is the cCRE start_position;
-The 3rd column is the cCRE end_position;
-The 4th column is the cCRE IDs.
-The following columns are the Functional Epigenetic State label of each cCRE at each cell-type .
+- The 1st column is the cCRE chromosome;
+- The 2nd column is the cCRE start_position;
+- The 3rd column is the cCRE end_position;
+- The 4th column is the cCRE IDs.
+- The following columns are the Functional Epigenetic State label of each cCRE at each cell-type .
 ```
 head input_data/Input_matrix/snapshot_test_run_merge.function.matrix.txt
 #chr	start	end	cCREsID	HSC	LMPP	MPP	CMP	MEP	ERY	GMP	MONp	CLP	B	NK	TCD4	TCD8
