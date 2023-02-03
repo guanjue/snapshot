@@ -30,7 +30,7 @@
 
 ## Dependencies
 The following packages and tools are required to run Snapshot:
-- Python:
+- Python3:
   - numpy
   - sklearn
 - R:
@@ -38,7 +38,16 @@ The following packages and tools are required to run Snapshot:
   - pheatmap
   - igraph
   - networkD3
+  - data.table
+  - mclust
+  - dplyr
+  - lsa
+  - cba
+  - RColorBrewer
+  - tidyverse
 - bedtools
+- ucsc_tools
+
 
 ## Installation Steps
 1. Clone the Github repository:
