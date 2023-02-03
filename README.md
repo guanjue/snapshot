@@ -13,19 +13,16 @@ Overview of Snapshot. (A) Step1: cCRE indexing. A binarized index is created for
 
 ## 
 # Snapshot Installation Guide 
-##
 The Snapshot Installation Guide can be found at [Installation Guide](https://github.com/guanjue/snapshot/blob/main/INSTALL.md).
 
 ## 
 # Snapshot Input data
-##
 User can choose to either directly input the index matrix, signal matrix, and functional epigenetic state matrix. The format for these matrices can be found at [Input Matrix format](https://github.com/guanjue/snapshot/blob/main/INPUT_format_matrix.md).
 
 Alternatively, the user can generate these matrices from raw data, including a peak bed file, a signal bigWig file, and a functional epigenetic state bigBed file. Information on how to use raw data as input for Snapshot can be found at [Input format for Raw data](https://github.com/guanjue/snapshot/blob/main/INPUT_format_raw.md).
 
 ## 
 # Running Snapshot
-##
 ### Step 1: Modify the Script
 Before running Snapshot, you need to provide the required input parameters and file paths in a `run_snapshot.parameter.settings.info.txt` file. The file should include the following information:
 
@@ -74,7 +71,6 @@ For the test data using matrice as input data, the Snapshot take 2min to run (Ma
 ## 
 # Outputs for testing data
 All output files will be put into the `output_folder`
-##
 ## Output matrix and bed files
 - cCRE matrix signal matrix with Index-Set-IDs & Meta-Index-Set-IDs
   - The 1st column is the cCRE chromosome;
