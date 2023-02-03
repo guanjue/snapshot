@@ -69,27 +69,25 @@ For the test data using matrice as input data, the Snapshot take 2min to run (Ma
 
 
 
+## 
+## Output results for testing data
+### All output files will be to the `output_folder`
+![logo](https://raw.githubusercontent.com/guanjue/snapshot/master/test_data/example/snapshot_test_run_merge.meta_cluster_cCRE_ave_merge.pdf)
 
-## Output results for test data
-### All output files will be to the 'output_folder'
+## The heatmap for Meta-Index-Set
+##### Average ATAC-seq signals patterns in all MetaISs.
+![logo](https://raw.githubusercontent.com/guanjue/snapshot/master/test_data/example/snapshot_test_run_merge.meansig.png)
 
-## The heatmap for index set
-##### Average ATAC-seq signals patterns in all Index-Sets.
-![logo](https://raw.githubusercontent.com/guanjue/snapshot/master/test_data/example/snapshot_test_run.meansig.png)
-
-##### Most Abundant Functional Epigenetic States patterns in all Index-Sets.
-![logo](https://raw.githubusercontent.com/guanjue/snapshot/master/test_data/example/snapshot_test_run.indexset_fun.png)
-
-##### Cell type differentiation system (Index-Set 31): Cell differentiation Tree of Average signals
+##### Cell type differentiation system (MetaIS-8): Cell differentiation Tree of Average signals
 ![logo](https://raw.githubusercontent.com/guanjue/snapshot/master/test_data/example/31.peak_signal_state_list.tree.signal.png)
 
-##### Cell type differentiation system (Index-Set 31): Cell differentiation Tree of Functional Epigenetic States
+##### Cell type differentiation system (MetaIS-8): Cell differentiation Tree of Functional Epigenetic States
 ![logo](https://raw.githubusercontent.com/guanjue/snapshot/main/test_data/example/31.peak_signal_state_list.tree.state.png)
 
-##### Cell type differentiation system (Index-Set 31): Violin of peak signals
+##### Cell type differentiation system (MetaIS-8): Violin of peak signals
 ![logo](https://raw.githubusercontent.com/guanjue/snapshot/master/test_data/example/31.violin.png)
 
-##### Cell type differentiation system (Index-Set 31): Barplot of Functional Epigenetic States
+##### Cell type differentiation system (MetaIS-8): Barplot of Functional Epigenetic States
 ![logo](https://raw.githubusercontent.com/guanjue/snapshot/master/test_data/example/31.bar.png)
 
 
