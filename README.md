@@ -41,6 +41,8 @@ Alternatively, the user can generate these matrices from raw data, including a p
 ### Step 1: Modify the Script
 Before running Snapshot, you need to provide the required input parameters and file paths in a `run_snapshot.parameter.settings.info.txt` file. The file should include the following information:
 
+The details about the parameters and the alternative options can be found as [Parameter Settings](https://github.com/guanjue/snapshot/blob/main/parameter_settings)
+
 ```
 cat test_data/run_snapshot.parameter.settings.info.hg38.ct13.txt 
 ##################################
@@ -77,98 +79,9 @@ time bash Step1_run_Snapshot.sh run_snapshot.parameter.settings.info.hg38.ct13.t
 
 ```
 
+For the test data using matrice as input data, the Snapshot take 2min to run (Macbook Pro, Apple M1 Pro chip; 16GB RAM)
 
 
-## RUN Snapshot
-##### (1) User need to change the script_folder, input_folder, output_folder, in 'Step1_run_Snapshot.sh' file. 
-##### The file path or folder path should be replace by the real absolute-path to the target folder
-
-##### This script is a pipeline that runs the "snapshot_v2.py" program, which is used for analyzing genomic data. The script specifies various required and optional parameters and input files, which are passed as arguments to the "snapshot_v2.py" program. The input files are specified as absolute file paths and include:
-
-```
-peak_signal_list_file - A file that lists the peak signals to be analyzed.
-IDEAS_state_color_list_file - A file that provides the color scheme for the functional states of genomic regions.
-cell_type_tree_file - A file that represents the hierarchical structure of the cell types being analyzed.
-genome_size_file - A file that lists the sizes of the chromosomes in the genome being analyzed.
-input_folder - The path to the folder that contains the input data.
-output_folder - The path to the folder where the output of the analysis will be stored.
-script_folder - The path to the folder that contains the "snapshot_v2.py" script.
-```
-In addition to these required parameters, the script also specifies several optional parameters, including:
-```
-master_peak_bed - A file that provides information about the peaks to be analyzed.
-min_number_per_indexset - The minimum number of cCRES points required for an IndexSet to include.
-QDA_round_num - The number of rounds of the "Quantitative Domain Analysis" (QDA) algorithm to be run.
-normalization_method - The method to be used for normalizing the data.
-have_function_state_files - A flag indicating whether the input data includes functional state information.
-index_matrix_txt - A file that provides information about the data points to be analyzed.
-signal_matrix_txt - A file that provides the signal data to be analyzed.
-function_state_matrix_txt - A file that provides information about the functional states of the genomic regions to be analyzed.
-```
-Finally, the script changes to the "input_folder" directory and runs the "snapshot_v2.py" program with the specified parameters and input files. The output of the analysis will be stored in the "output_folder". After the program completes, the script returns to the previous directory and outputs "complete :)".
-
-
-```
->>> cat Step1_run_Snapshot.sh
-##################################
-### required parameters or input files
-output_name='snapshot_test_run_merge'
-peak_signal_list_file='peak_signal_state_list.merge.txt'
-IDEAS_state_color_list_file='function_color_list.txt'
-cell_type_tree_file='cd_tree.txt'
-genome_size_file='/Users/universe/Downloads/Snapshot_test/input_data_hg38/hg38.chrom.1_22XY.sizes'
-
-### required folder path
-input_folder='/Users/universe/Downloads/Snapshot_test/input_data_hg38/'
-output_folder='/Users/universe/Downloads/Snapshot_test/input_data_hg38/hg38_outputs/hg38_chrAll_analysis_merge/'
-script_folder='/Users/universe/Documents/projects/snapshot/bin/'
-
-### optional parameters or input files
-master_peak_bed='/Users/universe/Downloads/Snapshot_test/input_data_hg38/snapshot_test_run_merge.bedinfo.bed'
-min_number_per_indexset=100
-QDA_round_num=1
-normalization_method=S3norm
-have_function_state_files=F
-
-### input matrix
-index_matrix_txt='/Users/universe/Downloads/Snapshot_test/input_data_hg38/used_input_matrix/snapshot_test_run_merge.index.matrix.txt'
-signal_matrix_txt='/Users/universe/Downloads/Snapshot_test/input_data_hg38/used_input_matrix/snapshot_test_run_merge.signal.matrix.txt'
-function_state_matrix_txt='/Users/universe/Downloads/Snapshot_test/input_data_hg38/used_input_matrix/snapshot_test_run_merge.function.matrix.txt'
-
-
-### run snapshot (CORE!!!)
-echo 'run snapshot :o'
-cd $input_folder
-
-
-time python3 $script_folder/snapshot_v2.py -p $peak_signal_list_file \
--n $output_name -t $min_number_per_indexset \
--f $genome_size_file \
--c $IDEAS_state_color_list_file \
--e $cell_type_tree_file \
--i $input_folder -o $output_folder -s $script_folder \
--m $master_peak_bed -q $QDA_round_num -z $normalization_method \
--b $have_function_state_files \
--a $index_matrix_txt \
--r $signal_matrix_txt \
--g $function_state_matrix_txt
-
-
-cd ..
-echo 'complete :)'
-
-```
-
-##### (2) use 'Step0_get_input_data_for_testing_run.sh' script to download input data for testing run
-```
-cd /snapshot/test_data/
-time bash Step0_get_input_data_for_testing_run.sh
-```
-
-##### (3) use 'runall_commandline.sh' script to run Snapshot. The testing run can be finish within 20min (Macbook pro, 2.4 GHz Quad-Core Intel Core i5; 8GB RAM)
-```
-time bash Step1_run_Snapshot.sh
-```
 
 
 ## Output results for test data
