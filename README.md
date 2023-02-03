@@ -31,9 +31,41 @@ The Snapshot Installation Guide can be found at [Installation Guide](https://git
 
 ## 
 ## Snapshot Input data
+### 1: epigenomic data
 User can choose to either directly input the index matrix, signal matrix, and functional epigenetic state matrix. The format for these matrices can be found at [Input Matrix format](https://github.com/guanjue/snapshot/blob/main/INPUT_format_matrix.md).
 
 Alternatively, the user can generate these matrices from raw data, including a peak bed file, a signal bigWig file, and a functional epigenetic state bigBed file. Information on how to use raw data as input for Snapshot can be found at [Input format for Raw data](https://github.com/guanjue/snapshot/blob/main/INPUT_format_raw.md).
+
+### 2: Parameter setting file
+
+```
+cat test_data/run_snapshot.parameter.settings.info.txt 
+##################################
+### required parameters or input files
+output_name	snapshot_test_run
+peak_signal_list_file	peak_signal_state_list.txt
+IDEAS_state_color_list_file	function_color_list.txt
+cell_type_tree_file	cd_tree.txt
+genome_size_file	hg38.chrom.1_22XY.sizes
+
+### required folder path
+input_folder	/Users/universe/Documents/projects/snapshot_test_data/input_data/
+output_folder	/Users/universe/Documents/projects/snapshot_test_data/output_result/
+script_folder	/Users/universe/Documents/projects/snapshot/bin/
+
+### optional parameters or input files
+master_peak_bed	/Users/universe/Documents/projects/snapshot/test_data/input_data/snapshot_test_run_merge.bedinfo.bed
+min_number_per_indexset	100
+QDA_round_num	1
+normalization_method	S3norm
+have_function_state_files	T
+
+### input matrix
+index_matrix_txt	/Users/universe/Documents/projects/snapshot/test_data/input_data/Input_matrix/snapshot_test_run_merge.index.matrix.txt
+signal_matrix_txt	/Users/universe/Documents/projects/snapshot/test_data/input_data/Input_matrix/snapshot_test_run_merge.signal.matrix.txt
+function_state_matrix_txt	/Users/universe/Documents/projects/snapshot/test_data/input_data/Input_matrix/snapshot_test_run_merge.function.matrix.txt
+
+```
 
 ## 
 ## Running Snapshot
