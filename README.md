@@ -26,7 +26,7 @@ Alternatively, the user can generate these matrices from raw data, including a p
 ### Step 1: Modify the Script
 Before running Snapshot, you need to provide the required input parameters and file paths in a `run_snapshot.parameter.settings.info.txt` file. The file should include the following information:
 
-The details about the parameters and the alternative options can be found as [Parameter Settings](https://github.com/guanjue/snapshot/blob/main/parameter_settings)
+The details about the parameters and the alternative options can be found as [Parameter Settings](https://github.com/guanjue/snapshot/blob/main/parameter_settings.md)
 
 ```
 cat test_data/run_snapshot.parameter.settings.info.hg38.ct13.txt 
