@@ -73,13 +73,13 @@ For the test data using matrice as input data, the Snapshot take 2min to run (Ma
 ## Output results for testing data
 
 #### cCRE matrix signal matrix with Index-Set-IDs & Meta-Index-Set-IDs
-The 1st column is the cCRE chromosome;
-The 2nd column is the cCRE start_position;
-The 3rd column is the cCRE end_position;
-The 4th column is the cCRE IDs.
-The 5th column is the Index-Sets-IDs.
-The 6th column is the Meta-Index-Sets-IDs.
-The following columns are the signal of each cCRE at each cell-type.
+- The 1st column is the cCRE chromosome;
+- The 2nd column is the cCRE start_position;
+- The 3rd column is the cCRE end_position;
+- The 4th column is the cCRE IDs.
+- The 5th column is the Index-Sets-IDs.
+- The 6th column is the Meta-Index-Sets-IDs.
+- The following columns are the signal of each cCRE at each cell-type.
 ```
 >>> head snapshot_test_run_merge.IS_metaISid.mat.final.txt
 #chr	start	end	cCREsID	IndexSetID	MetaISID	HSC	LMPP	MPP	CMP	MEP	ERY	GMP	MONp	CLP	B	NK	TCD4	TCD8
