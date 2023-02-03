@@ -37,6 +37,22 @@ Alternatively, the user can generate these matrices from raw data, including a p
 
 
 
+## 
+## Running Snapshot
+### Step 2: Execute the Script
+This script is a pipeline that runs the `snapshot_v2.py` program for analyzing genomic data. The script specifies various required and optional parameters and input files, which are passed as arguments to the program. The input files include:
+
+### The `Step1_run_Snapshot.sh` script is a pipeline that runs the `snapshot_v2.py` program, which is the main component of Snapshot. The script sets various required and optional parameters and input files, which are passed as arguments to the snapshot_v2.py program. The input files are specified as absolute file paths and include:
+
+
+
+
+
+
+
+
+
+
 ## RUN Snapshot
 ##### (1) User need to change the script_folder, input_folder, output_folder, in 'Step1_run_Snapshot.sh' file. 
 ##### The file path or folder path should be replace by the real absolute-path to the target folder
