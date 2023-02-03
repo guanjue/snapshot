@@ -27,4 +27,7 @@ have_function_state_files: check if the user have functional epigenetic state da
 index_matrix_txt: user provided binary index matrix for each cCRE in each cell-type (F/snapshot_test_run_merge.index.matrix.txt)
 signal_matrix_txt: user provided signal matrix for each cCRE in each cell-type (F/snapshot_test_run_merge.signal.matrix.txt)
 function_state_matrix_txt: user provided functional epigenetic state matrix for each cCRE in each cell-type (F/snapshot_test_run_merge.function.matrix.txt)
+
+
+# ‘F’: means user do NOT have the data / the procedure is NOT be included in the analysis
 ```
