@@ -29,8 +29,9 @@
 ## Snapshot Installation Guide 
 The Snapshot Installation Guide can be found at [Installation Guide](https://github.com/guanjue/snapshot/blob/main/INSTALL.md).
 
-
-## Input data
+## 
+## Snapshot Input data
+The Snapshot Installation Guide can be found at [Input format](https://github.com/guanjue/snapshot/blob/main/INPUT_format.md).
 
 ### The cell type peak & signal & epigenetic-state file list:
 The 1st column is the cell type label;
