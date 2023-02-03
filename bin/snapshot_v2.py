@@ -880,6 +880,7 @@ def snapshot(master_peak_bed, peak_signal_state_list, genome_size_file, outputna
 	call('time Rscript ' + script_folder + 'get_meta_IS.R ' + outputname+'.meansig.txt' + ' ' + peak_signal_state_list + ' ' + outputname+'.sig.txt' + ' ' + outputname + ' ' + merge_pk_name + ' ' + outputname+'.function.matrix.txt' + ' ' + have_function_state_files, shell=True)
 	### read Meta-IS-IDs
 	MetaIS_id_vec = read2d_array(outputname+'.metaISid.mat.txt', str)[:,15]
+	print(MetaIS_id_vec.shape)
 	MetaIS_id_vec = MetaIS_id_vec.astype(int)
 	#MetaIS_id_vec = MetaIS_id_vec.reshape(MetaIS_id_vec.shape[0], 1)
 	MetaIS_id_vec_unique = np.unique(MetaIS_id_vec)
