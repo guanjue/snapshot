@@ -797,7 +797,7 @@ def snapshot(master_peak_bed, peak_signal_state_list, genome_size_file, outputna
 		get_mark_matrix(outputname, peak_label_column, peak_signal_state_list, output_file_index, method, sort_sigbed, script_folder, signal_type)
 	else:
 		print('Use user provided index matrix')
-		call('cp '+index_matrix_txt + ' ' + output_file_index, shell=True)
+		call('tail -n+2 '+index_matrix_txt + ' > ' + output_file_index, shell=True)
 
 	### get signal matrix
 	peak_signal_column = 5
@@ -811,7 +811,7 @@ def snapshot(master_peak_bed, peak_signal_state_list, genome_size_file, outputna
 		get_mark_matrix(outputname, peak_signal_column, peak_signal_state_list, output_file_signal, method, sort_sigbed, script_folder, signal_type)
 	else:
 		print('Use user provided signal matrix')
-		call('cp '+signal_matrix_txt + ' ' + output_file_signal, shell=True)
+		call('tail -n+2 '+signal_matrix_txt + ' > ' + output_file_signal, shell=True)
 
 	if have_function_state_files != 'F':
 		### get function label matrix
@@ -826,7 +826,7 @@ def snapshot(master_peak_bed, peak_signal_state_list, genome_size_file, outputna
 			get_mark_matrix(outputname, peak_function_column, peak_signal_state_list, output_file_function, method, sort_sigbed, script_folder, signal_type, genome_size_file)
 		else:
 			print('Use user provided functional state matrix')
-			call('cp '+function_state_matrix_txt + ' ' + output_file_function, shell=True)
+			call('tail -n+2 '+function_state_matrix_txt + ' > ' + output_file_function, shell=True)
 	################################################################################################
 
 
