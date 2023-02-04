@@ -841,11 +841,8 @@ def snapshot(master_peak_bed, peak_signal_state_list, genome_size_file, outputna
 	#NB_count_thresh = int(read2d_array(outputname + '.index.matrix.txt.NB_count_thresh.txt', 'str')[0])
 	NB_count_thresh = int(read2d_array(outputname + '.index.matrix.txt.NB_count_thresh.txt', 'str')[0])
 	#NB_count_thresh = 0
-	###### count threshold based on percentage
-	Percentage_count_threshold = int(read2d_array(outputname + '.index.matrix.txt', str).shape[0]*0.005)
-	print('thresholds:')
+	print('NB model based thresholds:')
 	print(NB_count_thresh)
-	print(Percentage_count_threshold)
 	###### if NB_count_thresh is greater than user provided count threshold, then use NB_count_thresh
 	#if NB_count_thresh > 1000:
 	#	print('replace user provide count_threshold by NB_count_thresh')
@@ -853,15 +850,11 @@ def snapshot(master_peak_bed, peak_signal_state_list, genome_size_file, outputna
 	#	print(count_threshold)
 	#else:
 	#	print('use user provide count_threshold')
-	count_threshold_user = count_threshold
 	if count_threshold != 0:
 		count_threshold = count_threshold
-	elif NB_count_thresh==Percentage_count_threshold:
-		count_threshold = Percentage_count_threshold
 	else:
 		count_threshold = NB_count_thresh
-	### 
-	count_threshold = NB_count_thresh
+
 	#count_threshold = 500
 	print('count_threshold: '+str(count_threshold))
 	################################################################################################

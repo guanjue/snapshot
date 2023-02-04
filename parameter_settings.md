@@ -19,7 +19,7 @@ script_folder: Snapshot script directory. (/Users/universe/Documents/projects/sn
 
 ### optional parameters or input files
 master_peak_bed: user provided master peak list. (F/bedfile.bed)
-min_number_per_indexset: the minimum number of cCREs required for a abundant Index-Set. (numeric value e.g. 100)
+min_number_per_indexset: the minimum number of cCREs required for a abundant Index-Set. (0/numeric value e.g. 100) (0: let Snapshot to decide this number)
 normalization_method: different internal normalization methods. (F/S3norm/scale_quantile/QTnorm)
 have_function_state_files: check if the user have functional epigenetic state data for the analysis. (T/F)
 
