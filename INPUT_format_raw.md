@@ -1,4 +1,4 @@
-### The cell type peak & signal & epigenetic-state file list:
+## The cell type peak & signal & epigenetic-state file list:
 - The 1st column is the cell type label;
 - The 2nd column is the cell-type specific peak bed absolute-file-path;
 - The 3rd column is the cell-type specific signal bigWig absolute-file-path;
@@ -21,7 +21,7 @@ TCD4	atac_pk/TCD4.merge.sort.tabNBPfdrpk.bed	atac_sig/TCD4.merge.bw	function_lab
 TCD8	atac_pk/TCD8.merge.sort.tabNBPfdrpk.bed	atac_sig/TCD8.merge.bw	function_label/T_CD8_C0066PH1.state.bb
 ```
 
-### The Cell Type Differentiation Tree
+## The Cell Type Differentiation Tree
 Each row in the cell type differentiation tree file represents one edge in the cell type differentiation tree. 
 The format of the file is as follows: 
 - The first column represents the progenitor cell type
