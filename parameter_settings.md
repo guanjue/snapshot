@@ -6,7 +6,7 @@ The details about the input files can be found at following links:
 ```
 ##################################
 ### required parameters or input files
-output_name	snapshot_test_run_merge
+output_name: snapshot_test_run_merge
 peak_signal_list_file: peak_signal_state_list.merge.txt
 IDEAS_state_color_list_file: function_color_list.txt
 cell_type_tree_file: cd_tree.txt
