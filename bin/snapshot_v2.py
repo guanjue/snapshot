@@ -1072,12 +1072,12 @@ def main(argv):
 	try:
 		opts, args = getopt.getopt(argv,"hm:p:n:t:l:z:d:x:f:c:e:i:o:s:q:u:b:a:r:g:")
 	except getopt.GetoptError:
-		print('time python3 snapshot.py -m master_peak_bed[optional] -p peak_signal_state_list[required] -n outputname[required] -t index_set_count_thresh[optional] -l log2_sig[optional] -z scale_sig[optional] -d quantile_1[optional] -x add_small_number[optional] -f genome_chrom_size_file[required] -c function_color_list[required] -e cell_development_tree[required] -i input_folder[required] -o output_folder[required] -b script_folder[required] -q QDA_rescuing_round_number[optional] -u use_user_thresh[optional]')
+		print('time python3 snapshot.py error, Please check parameter settings')
 		sys.exit(2)
 
 	for opt,arg in opts:
 		if opt=="-h":
-			print('time python3 snapshot.py -m master_peak_bed[optional] -p peak_signal_state_list[required] -n outputname[required] -t index_set_count_thresh[optional] -l log2_sig[optional] -z scale_sig[optional] -d quantile_1[optional] -x add_small_number[optional] -f genome_chrom_size_file[required] -c function_color_list[required] -e cell_development_tree[required] -i input_folder[required] -o output_folder[required] -b script_folder[required] -q QDA_rescuing_round_number[optional] -u use_user_thresh[optional]')
+			print('time python3 snapshot.py, Please check Snapshot github page (https://github.com/guanjue/snapshot) for details')
 			sys.exit()
 		elif opt=="-m":
 			master_peak_bed=str(arg.strip())
