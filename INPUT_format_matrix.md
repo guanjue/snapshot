@@ -62,8 +62,8 @@ chr1	904600	904800	9	11	11	11	11	11	12	11	24	11	24	24	13	24
 ### The Cell Type Differentiation Tree
 Each row in the cell type differentiation tree file represents one edge in the cell type differentiation tree. 
 The format of the file is as follows: 
-1. The first column represents the progenitor cell type
-2. The second column represents the differentiated cell type
+- The first column represents the progenitor cell type
+- The second column represents the differentiated cell type
 Here's a sample of the file content: 
 ```
 >>> cat input_data/cd_tree.txt
@@ -84,8 +84,8 @@ CLP,TCD8
 ## The functional state color list
 Each row in the functional state color list represents the color assigned to a specific epigenetic state label. 
 The following is the structure of the list:
-1. Column 1: Epigenetic state label
-2. Column 2: RGB color of the state
+- Column 1: Epigenetic state label
+- Column 2: RGB color of the state
 Here's a sample of the file content:
 ```
 >>> cat input_data/function_color_list.txt 
