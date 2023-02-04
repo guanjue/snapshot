@@ -1,3 +1,4 @@
+##
 ## The Index matrix
 - The 1st column is the cCRE chromosome;
 - The 2nd column is the cCRE start_position;
@@ -18,6 +19,7 @@ chr1	897400	897600	8	1	0	1	0	0	0	0	0	0	0	0	0	0
 chr1	904600	904800	9	0	0	0	0	0	0	0	0	0	0	0	1	1
 ```
 
+##
 ## The Signal matrix
 - The 1st column is the cCRE chromosome;
 - The 2nd column is the cCRE start_position;
@@ -38,6 +40,7 @@ chr1	897400	897600	8	2.17881	1.35716	2.17881	0.727432	0.344694	0.397386	0.514857
 chr1	904600	904800	9	0.609961	0.344694	0.685021	0.514857	0.109752	0.974417	0.974417	0.856946	0.227223	1.41998	1.87953	3.93349	4.72233
 ```
 
+##
 ## The Functional Epigenetic State matrix
 - The 1st column is the cCRE chromosome;
 - The 2nd column is the cCRE start_position;
@@ -58,7 +61,7 @@ chr1	897400	897600	8	18	18	18	3	11	11	3	3	3	3	11	11	11
 chr1	904600	904800	9	11	11	11	11	11	12	11	24	11	24	24	13	24
 ```
 
-
+##
 ## The Cell Type Differentiation Tree
 Each row in the cell type differentiation tree file represents one edge in the cell type differentiation tree. 
 The format of the file is as follows: 
@@ -81,6 +84,7 @@ CLP,TCD4
 CLP,TCD8
 ```
 
+##
 ## The functional state color list
 Each row in the functional state color list represents the color assigned to a specific epigenetic state label. 
 The following is the structure of the list:

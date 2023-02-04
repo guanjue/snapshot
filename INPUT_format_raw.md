@@ -1,3 +1,4 @@
+##
 ## The cell type peak & signal & epigenetic-state file list:
 - The 1st column is the cell type label;
 - The 2nd column is the cell-type specific peak bed absolute-file-path;
@@ -21,6 +22,7 @@ TCD4	atac_pk/TCD4.merge.sort.tabNBPfdrpk.bed	atac_sig/TCD4.merge.bw	function_lab
 TCD8	atac_pk/TCD8.merge.sort.tabNBPfdrpk.bed	atac_sig/TCD8.merge.bw	function_label/T_CD8_C0066PH1.state.bb
 ```
 
+##
 ## The Cell Type Differentiation Tree
 Each row in the cell type differentiation tree file represents one edge in the cell type differentiation tree. 
 The format of the file is as follows: 
@@ -43,6 +45,7 @@ CLP,TCD4
 CLP,TCD8
 ```
 
+##
 ## The functional state color list
 Each row in the functional state color list represents the color assigned to a specific epigenetic state label. 
 The following is the structure of the list:
