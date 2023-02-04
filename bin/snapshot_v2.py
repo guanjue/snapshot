@@ -1147,8 +1147,8 @@ def main(argv):
 	try:
 		print('User provide minimum number of bins per Index-set: -t '+str(count_threshold))
 	except NameError:
-		print('Default: The minimum number of bins per Index-set is set to 100')
-		count_threshold = 100
+		print('Default: The minimum number of bins per Index-set is set to 0, which means let Snapshot determine this number automatically')
+		count_threshold = 0
 
 	try:
 		print('add small number to avoid 0: -x '+str(sigsmallnum))
