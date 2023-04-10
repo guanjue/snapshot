@@ -63,7 +63,8 @@ time python3 $script_folder/snapshot_v2.py -p $peak_signal_list_file \
 -b $have_function_state_files \
 -a $index_matrix_txt \
 -r $signal_matrix_txt \
--g $function_state_matrix_txt
+-g $function_state_matrix_txt \
+-j $have_function_state_files
 
 
 echo 'complete :)'

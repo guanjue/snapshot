@@ -798,6 +798,9 @@ def snapshot(master_peak_bed, peak_signal_state_list, genome_size_file, outputna
 	else:
 		print('Use user provided index matrix')
 		call('tail -n+2 '+index_matrix_txt + ' > ' + output_file_index, shell=True)
+		# write ct list file by using the first row of index matrix
+		ct_list_file = peak_signal_state_list
+		call('head -n1 '+index_matrix_txt + ' | awk -F \'\t\' -v OFS=\'\t\' \'{for(i=5;i<=NF;i++) print $i}\' > ' + ct_list_file, shell=True)
 
 	### get signal matrix
 	peak_signal_column = 5
@@ -1070,7 +1073,7 @@ import getopt
 import sys
 def main(argv):
 	try:
-		opts, args = getopt.getopt(argv,"hm:p:n:t:l:z:d:x:f:c:e:i:o:s:q:u:b:a:r:g:")
+		opts, args = getopt.getopt(argv,"hm:p:n:t:l:z:d:x:f:c:e:i:o:s:q:u:b:a:r:g:j:")
 	except getopt.GetoptError:
 		print('time python3 snapshot.py error, Please check parameter settings')
 		sys.exit(2)
@@ -1119,6 +1122,8 @@ def main(argv):
 			signal_matrix_txt = str(arg.strip())
 		elif opt=='-g':
 			function_state_matrix_txt = str(arg.strip())
+		elif opt=='-j':
+			have_function_state_files = str(arg.strip())
 
 
 	############ Default parameters
