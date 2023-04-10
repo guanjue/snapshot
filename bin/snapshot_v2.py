@@ -677,7 +677,7 @@ def get_index_set_function_matrix(function_matrix_file, pass_thresh_index_dict, 
 
 ################################################################################################
 ### index set sth some score matrix
-def get_index_set(outputname, signal_matrix_file, count_threshold, log2_sig, normalization_method, quantile_1, smallnum, qda_num, function_method, state_color_file, script_folder, peak_signal_state_list):
+def get_index_set(outputname, signal_matrix_file, count_threshold, log2_sig, normalization_method, quantile_1, smallnum, qda_num, function_method, state_color_file, script_folder, peak_signal_state_list, have_function_state_files):
 	### read index matrix file
 	index_matrix_file = outputname + '.index.matrix.txt'
 	index_matrix_od = read2d_array(index_matrix_file, 'str')
@@ -717,35 +717,36 @@ def get_index_set(outputname, signal_matrix_file, count_threshold, log2_sig, nor
 
 
 
-	##################
-	###### get index_set function matrix
-	print('get index_set most freqent functional state matrix...')
-	function_matrix_file = outputname + '.function.matrix.txt'
-	if function_method == 'mostfreq':
-		### if functional information is most frequent state information
-		print(index_label_vector)
-		print(index_label_vector.shape)
-		print(index_set_vector)
-		print(index_set_vector.shape)
-		#index_set_freqfun_info = get_index_set_function_matrix(function_matrix_file, MetaIS_id_vec_unique[:,0], sort_id, MetaIS_id_vec, MetaIS_id_vec_unique, state_color_file)
-		index_set_freqfun_info = get_index_set_function_matrix(function_matrix_file, pass_thresh_index_dict, sort_id, index_label_vector, index_set_vector, state_color_file)
-		index_set_mostfreqfun_matrix = index_set_freqfun_info['index_set_mostfreqfun_matrix']
-		index_fun_matrix = index_set_freqfun_info['index_fun_matrix']
-		write2d_array(index_set_mostfreqfun_matrix, outputname+'.indexset_fun.txt')
-		write2d_array(index_fun_matrix, outputname+'.fun.txt')
-	elif function_method == 'mean':
-		### if functional information is numerical information
-		index_set_funcion_mean_signal_info = get_index_set_mean_signal_matrix(function_matrix_file, pass_thresh_index_dict, count_threshold, index_vector)
-		index_set_funcion_mean_signal_matrix = index_set_funcion_mean_signal_info['index_set_mean_signal_matrix']
-		sort_id = index_set_funcion_mean_signal_info['sort_id']
-		index_label_vector = index_set_funcion_mean_signal_info['index_label_vector']
-		index_set_vector = index_set_funcion_mean_signal_info['index_set_vector']
-		index_signal_matrix = index_set_funcion_mean_signal_info['index_signal_matrix']
-		write2d_array(index_set_funcion_mean_signal_matrix, outputname+'.indexset_fun.txt')
-		write2d_array(index_signal_matrix, outputname+'.fun.txt')	
-	else:
-		print('ERROR: get index_set most freqent functional state matrix...METHOD not found!!!')
-	print('get index_set most freqent functional state matrix...DONE')
+	if have_function_state_files != 'F':
+		##################
+		###### get index_set function matrix
+		print('get index_set most freqent functional state matrix...')
+		function_matrix_file = outputname + '.function.matrix.txt'
+		if function_method == 'mostfreq':
+			### if functional information is most frequent state information
+			print(index_label_vector)
+			print(index_label_vector.shape)
+			print(index_set_vector)
+			print(index_set_vector.shape)
+			#index_set_freqfun_info = get_index_set_function_matrix(function_matrix_file, MetaIS_id_vec_unique[:,0], sort_id, MetaIS_id_vec, MetaIS_id_vec_unique, state_color_file)
+			index_set_freqfun_info = get_index_set_function_matrix(function_matrix_file, pass_thresh_index_dict, sort_id, index_label_vector, index_set_vector, state_color_file)
+			index_set_mostfreqfun_matrix = index_set_freqfun_info['index_set_mostfreqfun_matrix']
+			index_fun_matrix = index_set_freqfun_info['index_fun_matrix']
+			write2d_array(index_set_mostfreqfun_matrix, outputname+'.indexset_fun.txt')
+			write2d_array(index_fun_matrix, outputname+'.fun.txt')
+		elif function_method == 'mean':
+			### if functional information is numerical information
+			index_set_funcion_mean_signal_info = get_index_set_mean_signal_matrix(function_matrix_file, pass_thresh_index_dict, count_threshold, index_vector)
+			index_set_funcion_mean_signal_matrix = index_set_funcion_mean_signal_info['index_set_mean_signal_matrix']
+			sort_id = index_set_funcion_mean_signal_info['sort_id']
+			index_label_vector = index_set_funcion_mean_signal_info['index_label_vector']
+			index_set_vector = index_set_funcion_mean_signal_info['index_set_vector']
+			index_signal_matrix = index_set_funcion_mean_signal_info['index_signal_matrix']
+			write2d_array(index_set_funcion_mean_signal_matrix, outputname+'.indexset_fun.txt')
+			write2d_array(index_signal_matrix, outputname+'.fun.txt')	
+		else:
+			print('ERROR: get index_set most freqent functional state matrix...METHOD not found!!!')
+		print('get index_set most freqent functional state matrix...DONE')
 
 ################################################################################################
 
@@ -866,7 +867,7 @@ def snapshot(master_peak_bed, peak_signal_state_list, genome_size_file, outputna
 	################################################################################################
 	###### get index_set matrices
 	print('04: get Index-Sets matrix')
-	get_index_set(outputname, output_file_signal, count_threshold, siglog2, normalization_method, quantile_1, sigsmallnum, qda_num, function_method, function_color_file, script_folder, peak_signal_state_list)
+	get_index_set(outputname, output_file_signal, count_threshold, siglog2, normalization_method, quantile_1, sigsmallnum, qda_num, function_method, function_color_file, script_folder, peak_signal_state_list, have_function_state_files)
 	################################################################################################
 
 
