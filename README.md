@@ -2,7 +2,7 @@
 Here we developed a package, called Snapshot, for clustering and visualizing the cCREs and their functional epigenetic states during cell differentiation. The package uses a binarized indexing strategy for grouping each cCRE into different clusters (Fig. 1). The strategy guarantees to identify all binarized cCRE clusters in the data and further merges them into interpretable groups. It also automatically determines the number of clusters. Furthermore, the clusters and the corresponding dominant epigenetic states in each of the cell types can be visualized by incorporating the user provided cell-differentiation-tree, and thus can highlight the epigenetic history specific to any particular cell lineage. 
 
 ## Reference
-Xiang, G., Giardine, B., An, L., Sun, C., Keller, C., Heuston, E., Bodine, D., Hardison, R. and Zhang, Y. Snapshot: clustering and visualizing epigenetic history during cell differentiation. bioRxiv, p.291880.
+Xiang, G., Giardine, B., An, L., Sun, C., Keller, C.A., Heuston, E.F., Anderson, S.M., Kirby, M., Bodine, D., Zhang, Y. and Hardison, R.C., 2023. Snapshot: a package for clustering and visualizing epigenetic history during cell differentiation. BMC bioinformatics, 24(1), p.102.
 
 
 ## The overall workflow of Snapshot
